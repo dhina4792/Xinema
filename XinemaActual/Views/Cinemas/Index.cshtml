@@ -1,0 +1,115 @@
+﻿@model IEnumerable<XinemaActual.Models.Cinema>
+
+
+@{
+    ViewBag.Title = "Cinemas";
+}
+
+<div class="pull-right">
+    @Html.Label("Order By")
+    @Html.DropDownList("CinemaOrderByDropDownListItems", null, new { onchange = "document.location.href='/Cinemas/Index?id='+this.value;" })
+</div>
+<div class="clear">
+</div>
+@foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
+{
+    if (item.Selected == true)
+    {
+        if (item.Text == "All")
+        {
+
+        }
+        else
+        {
+            <h2 class="head">@item.Text</h2>
+        }
+
+    }
+
+}
+<div class="container">
+@foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
+{
+    if (item.Selected == true && item.Text == "All")
+    {
+
+            <h2 class="head">Golden Village</h2>
+
+
+
+    }
+
+}
+    <div class="top-box">
+        @foreach (var item in Model.Where(item => item.CinemaName.Contains("Golden Village") || item.CinemaAddress.Contains("Golden Village")))
+        {
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        @Html.ActionLink(item.CinemaName, "Details", new { id = item.CinemaID }, new { @class = "h3" })
+                        <p>@item.CinemaAddress</p>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="clear"></div>
+    @foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
+    {
+        if (item.Selected == true && item.Text == "All")
+        {
+
+            <h2 class="head">Shaw</h2>
+
+
+
+        }
+
+    }
+    <div class="top-box">
+        @foreach (var item in Model.Where(item => item.CinemaName.Contains("Shaw") || item.CinemaAddress.Contains("Golden Village")))
+        {
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        @Html.ActionLink(item.CinemaName, "Details", new { id = item.CinemaID }, new { @class = "h3" })
+                        <p>@item.CinemaAddress</p>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="clear"></div>
+@foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
+{
+    if (item.Selected == true && item.Text == "All")
+    {
+
+        <h2 class="head">Cathay</h2>
+
+
+
+    }
+
+}
+    <div class="top-box">
+        @foreach (var item in Model.Where(item => item.CinemaName.Contains("Cathay") || item.CinemaAddress.Contains("Cathay")))
+        {
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        @Html.ActionLink(item.CinemaName, "Details", new { id = item.CinemaID }, new { @class = "h3" })
+                        <p>@item.CinemaAddress</p>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="clear"></div>
+</div>

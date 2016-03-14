@@ -1,0 +1,52 @@
+﻿@model XinemaActual.Models.Cinema
+<style type="text/css">
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map-canvas {
+        height: 100%;
+    }
+</style>
+@{
+    ViewBag.Title = "Cinema Details";
+
+}
+<script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+   
+    function Initialize()
+    {
+
+        var latlng = new google.maps.LatLng(@ViewBag.latCinema, @ViewBag.longCinema)
+        var options = {
+            zoom: 14,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), options);
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: '@Model.CinemaName'
+
+        });
+    }
+
+
+    $(function () {
+        Initialize();
+    });
+</script>
+<div class="container">
+     <h2 class="head">@Model.CinemaName</h2>
+     <p>@Model.CinemaAddress</p>
+    <div id="map_canvas" style="width: 400px; height: 300px;"></div>
+</div>

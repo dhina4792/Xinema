@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/form.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="~/Scripts/jquery1.min.js"></script>
+    <!-- start menu -->
+    <link href="~/Content/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Scripts/megamenu.js"></script>
+    <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+    <!--start slider -->
+    <link rel="stylesheet" href="~/Content/fwslider.css" media="all">
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/css3-mediaqueries.js"></script>
+    <script src="~/Scripts/fwslider.js"></script>
+    <!--end slider -->
+    <script src="~/Scripts/jquery.easydropdown.js"></script>
+
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="header-bottom">
+        <div class="wrap">
+            <div class="header-bottom-left">
+                <div class="logo">
+                    <img src="~/images/logo.png" alt="" /></a>
+                </div>
+                <div class="menu">
+                    <ul class="megamenu skyblue">
+                        <li class="active grid">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Movies","Index","Movies")</li>
+                        <li>@Html.ActionLink("Cinemas", "Index", "Cinemas")</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-bottom-right">
+                <div class="search">
+                    <input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                    <input type="submit" value="Subscribe" id="submit" name="submit">
+                    <div id="response"> </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <!--/slider -->
+    <div class="container body-content">
+        
+        <hr />
+
+    </div>
+    @RenderBody()
+    <div class="footer-bottom">
+        <div class="wrap">
+            <div class="f-list2">
+                <ul>
+                    <li class="active"><a href="about.html">About Us</a></li> |
+                    <li><a href="delivery.html">Terms & Conditions</a></li> |
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
