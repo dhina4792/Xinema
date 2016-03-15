@@ -8,8 +8,10 @@ namespace XinemaActual.Models
 {
     public class Cinema
     {
-        public int CinemaID { get; set; }
-        public string CinemaName { get; set; }
-        public string CinemaAddress { get; set; }
+        [Key]
+        public int cinemaID { get; set; }
+
+        public string cinemaName { get; set; }
+        public string cinemaAddress { get; set; }
     }
 }

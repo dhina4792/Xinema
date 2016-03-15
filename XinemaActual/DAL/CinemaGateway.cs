@@ -41,18 +41,18 @@ namespace XinemaActual.DAL
                 case 1:
 
                     cinemas = from t in SelectAll()
-                              where t.CinemaName.Contains("Shaw") || t.CinemaAddress.Contains("Shaw")
+                              where t.cinemaName.Contains("Shaw") || t.cinemaAddress.Contains("Shaw")
                               select t;
                     return cinemas;
                 case 2:
                     cinemas = from t in SelectAll()
-                              where t.CinemaName.Contains("Golden Village") || t.CinemaAddress.Contains("Golden Village")
+                              where t.cinemaName.Contains("Golden Village") || t.cinemaAddress.Contains("Golden Village")
                               select t;
                     return cinemas;
 
                 case 3:
                     cinemas = from t in SelectAll()
-                              where t.CinemaName.Contains("Cathay") || t.CinemaAddress.Contains("Cathay")
+                              where t.cinemaName.Contains("Cathay") || t.cinemaAddress.Contains("Cathay")
                               select t;
                     return cinemas;
 

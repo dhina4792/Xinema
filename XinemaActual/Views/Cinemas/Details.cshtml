@@ -35,7 +35,7 @@
         var marker = new google.maps.Marker({
             position: latlng,
             map: map,
-            title: '@Model.CinemaName'
+            title: '@Model.cinemaName'
 
         });
     }
@@ -46,7 +46,7 @@
     });
 </script>
 <div class="container">
-     <h2 class="head">@Model.CinemaName</h2>
-     <p>@Model.CinemaAddress</p>
+     <h2 class="head">@Model.cinemaName</h2>
+     <p>@Model.cinemaAddress</p>
     <div id="map_canvas" style="width: 400px; height: 300px;"></div>
 </div>

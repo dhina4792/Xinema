@@ -41,14 +41,14 @@
 
 }
     <div class="top-box">
-        @foreach (var item in Model.Where(item => item.CinemaName.Contains("Golden Village") || item.CinemaAddress.Contains("Golden Village")))
+        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Golden Village") || item.cinemaAddress.Contains("Golden Village")))
         {
             <div class="col-sm-6 col-md-6">
                 <div class="thumbnail">
 
                     <div class="caption">
-                        @Html.ActionLink(item.CinemaName, "Details", new { id = item.CinemaID }, new { @class = "h3" })
-                        <p>@item.CinemaAddress</p>
+                        @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
+                        <p>@item.cinemaAddress</p>
 
                     </div>
                 </div>
@@ -69,14 +69,14 @@
 
     }
     <div class="top-box">
-        @foreach (var item in Model.Where(item => item.CinemaName.Contains("Shaw") || item.CinemaAddress.Contains("Golden Village")))
+        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Shaw") || item.cinemaAddress.Contains("Golden Village")))
         {
             <div class="col-sm-6 col-md-6">
                 <div class="thumbnail">
 
                     <div class="caption">
-                        @Html.ActionLink(item.CinemaName, "Details", new { id = item.CinemaID }, new { @class = "h3" })
-                        <p>@item.CinemaAddress</p>
+                        @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
+                        <p>@item.cinemaAddress</p>
 
                     </div>
                 </div>
@@ -97,14 +97,14 @@
 
 }
     <div class="top-box">
-        @foreach (var item in Model.Where(item => item.CinemaName.Contains("Cathay") || item.CinemaAddress.Contains("Cathay")))
+        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Cathay") || item.cinemaAddress.Contains("Cathay")))
         {
             <div class="col-sm-6 col-md-6">
                 <div class="thumbnail">
 
                     <div class="caption">
-                        @Html.ActionLink(item.CinemaName, "Details", new { id = item.CinemaID }, new { @class = "h3" })
-                        <p>@item.CinemaAddress</p>
+                        @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
+                        <p>@item.cinemaAddress</p>
 
                     </div>
                 </div>

@@ -17,5 +17,6 @@ namespace XinemaActual.DAL
 
         public DbSet<Cinema> Cinemas { get; set; }
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Showtime> Showtimes { get; set; }
     }
 }

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<XinemaActual.Models.Movie>
+
+@{
+    ViewBag.Title = "Movies";
+   
+}
+
+<div class="pull-right">
+    @Html.Label("Order By")
+    @Html.DropDownList("MovieOrderByDropDownItems", null, new { onchange = "document.location.href='/Movies/Index?id='+this.value;" })
+</div>
+<div class="clear"> 
+</div>
+<div class="container">
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        <h3>@Html.DisplayFor(modelItem => item.movieTitle)</h3>
+                      
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

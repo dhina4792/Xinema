@@ -57,7 +57,7 @@ namespace XinemaActual.Controllers
         public ActionResult Details(int? id)
         {
             Cinema model = cinemaGateway.SelectById(id);
-            var address = model.CinemaAddress;
+            var address = model.cinemaAddress;
             int indexOfHyphen = address.IndexOf('-');
             String addressWithoutPhone = address.Substring(0, indexOfHyphen - 1);
             var locationService = new GoogleLocationService();

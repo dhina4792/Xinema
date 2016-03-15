@@ -1,0 +1,26 @@
+﻿@model XinemaActual.Models.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Movies</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.moviesName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moviesName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.moviesID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
