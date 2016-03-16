@@ -19,8 +19,11 @@ namespace XinemaActual.Models
         public string showtimeDate { get; set; }
 
         public int? cinemas_cinemasID { get; set; }
-
         [ForeignKey("cinemas_cinemasID")]
         public virtual Cinema Cinema { get; set; }
+
+        public int? movies_moviesID { get; set; }
+        [ForeignKey("movies_moviesID")]
+        public virtual Movie Movie { get; set; }
     }
 }

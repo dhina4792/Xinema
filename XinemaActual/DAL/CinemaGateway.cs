@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using XinemaActual.Models;
+using XinemaActual.ViewModels;
 
 namespace XinemaActual.DAL
 {
@@ -26,7 +27,6 @@ namespace XinemaActual.DAL
 
 
         }
-
         public List<SelectListItem> GetCinemaOrderByNames()
         {
             return CinemaOrderByDropDownItems;
@@ -59,8 +59,16 @@ namespace XinemaActual.DAL
 
 
             }
+            //MovieGateway showtime = new MovieGateway();
+            //var test = showtime.SelectAll();
 
-
+            //var viewModels = (from m in cinemas
+            //                  join r in test on m.cinemaID equals r.movieID
+            //                  select new ShowtimeVM()
+            //                  {
+            //                      movieTitle = r.movieTitle;
+                            
+            //                  }).ToList();
             return cinemas;
         }
     }

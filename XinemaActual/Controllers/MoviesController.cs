@@ -19,6 +19,7 @@ namespace XinemaActual.Controllers
 
         public MoviesController()
         {
+
             movieGateway = new MovieGateway();
             ViewBag.MovieOrderByDropDownItems = movieGateway.GetMovieOrderByNames();
         }
@@ -41,6 +42,10 @@ namespace XinemaActual.Controllers
             return View(movieGateway.SelectAll());
 
 
+        }
+        public ActionResult Details(int? id)
+        {
+            return View(movieGateway.SelectById(id));
         }
     }
 }

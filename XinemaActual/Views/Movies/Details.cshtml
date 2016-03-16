@@ -4,23 +4,20 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<ul class="breadcrumb breadcrumb__t">Movie Details</ul>
 
-<div>
-    <h4>Movies</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.moviesName)
-        </dt>
+<div class="container">
+    <div class="cont span_2_of_3">
+        <div class="desc1 span_3_of_2">
+            <h3 class="m_3">@Html.DisplayFor(model => model.movieTitle)</h3>
+            <p class="m_5">@Html.DisplayFor(model => model.movieLanguage)</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.moviesName)
-        </dd>
-
-    </dl>
+            <span class="m_link">@Html.DisplayFor(model => model.movieTrailerURL)</span>
+            <p class="m_text2">@Html.DisplayFor(model => model.movieGenre)</p>
+            <p class="m_text2">@Html.DisplayFor(model => model.movieRating)</p>
+            <p class="m_text2">@Html.DisplayFor(model => model.movieRunningTime)</p>
+        </div>
+        <div class="clear"></div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.moviesID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

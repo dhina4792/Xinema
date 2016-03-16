@@ -213,17 +213,19 @@
     <Compile Include="Controllers\CinemasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="DAL\CinemaGateway.cs" />
     <Compile Include="DAL\DataGateway.cs" />
     <Compile Include="DAL\IDataGateway.cs" />
     <Compile Include="DAL\MovieGateway.cs" />
+    <Compile Include="DAL\ShowtimeGateway.cs" />
     <Compile Include="DAL\XinemaActualContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603141256187_InitialCreate.cs" />
-    <Compile Include="Migrations\201603141256187_InitialCreate.Designer.cs">
-      <DependentUpon>201603141256187_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201603160311188_InitialMigrations.cs" />
+    <Compile Include="Migrations\201603160311188_InitialMigrations.Designer.cs">
+      <DependentUpon>201603160311188_InitialMigrations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -365,6 +367,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Showtimes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -380,8 +383,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603141256187_InitialCreate.resx">
-      <DependentUpon>201603141256187_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603160311188_InitialMigrations.resx">
+      <DependentUpon>201603160311188_InitialMigrations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
