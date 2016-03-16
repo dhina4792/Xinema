@@ -11,7 +11,7 @@ namespace XinemaActual.ViewModels
         public int showtimeID { get; set; }
         [DataType(DataType.Date)]
         public string showtimeDate { get; set; }
-        [DataType(DataType.Time)]
+
         public string showtimeStartTime { get; set; }
 
         public int movieID { get; set; }

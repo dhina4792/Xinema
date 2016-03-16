@@ -25,7 +25,8 @@ namespace XinemaActual.Controllers
         }
         public ActionResult Index()
         {
-            return View(showTimeGateway.GetallShowtimes(movies,cinemas));
+            return View(showTimeGateway.SelectAll());
+            //return View(showTimeGateway.GetallShowtimes(movies,cinemas));
         }
     }
 }

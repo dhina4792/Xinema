@@ -20,9 +20,9 @@ namespace XinemaActual.DAL
                                 select t;
 
             var viewmodels = (from s in showtimesList
-                              join c in cinemasList on s.cinemas_cinemasID equals c.cinemaID
-                              join m in moviesList on s.movies_moviesID equals m.movieID
-                              where DateTime.ParseExact(s.showtimeDate, "dd/MM/yyyy", null) == DateTime.Now.Date
+                              join c in cinemasList on s.cinemaName equals c.cinemaName
+                              join m in moviesList on s.movieTitle equals m.movieTitle
+//                              where DateTime.ParseExact(s.showtimeDate, "dd/MM/yyyy", null) == DateTime.Now.Date
                               select new ShowtimeVM()
                               {
                                   showtimeStartTime = s.showtimeStartTime,

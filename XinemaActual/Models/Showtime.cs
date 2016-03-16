@@ -25,5 +25,9 @@ namespace XinemaActual.Models
         public int? movies_moviesID { get; set; }
         [ForeignKey("movies_moviesID")]
         public virtual Movie Movie { get; set; }
+
+        public string movieTitle { get; set; }
+        public string cinemaName { get; set; }
+
     }
 }

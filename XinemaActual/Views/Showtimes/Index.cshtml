@@ -1,4 +1,4 @@
-﻿@model IEnumerable<XinemaActual.ViewModels.ShowtimeVM>
+﻿@model IEnumerable<XinemaActual.Models.Showtime>
 
 @{
     ViewBag.Title = "All Showtimes";
@@ -9,7 +9,7 @@
 <div class="container">
     <h2 class="head">Golden Village</h2>
     <div class="top-box">
-        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Cathay")))
+        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Golden Village")))
         {
 
             <div class="col-sm-6 col-md-6">
