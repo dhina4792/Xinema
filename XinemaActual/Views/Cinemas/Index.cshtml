@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Cinemas";
 }
-
+<ul class="breadcrumb breadcrumb__t">Cinemas</ul>
 <div class="pull-right">
     @Html.Label("Order By")
     @Html.DropDownList("CinemaOrderByDropDownListItems", null, new { onchange = "document.location.href='/Cinemas/Index?id='+this.value;" })

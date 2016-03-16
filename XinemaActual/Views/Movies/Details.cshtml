@@ -12,7 +12,7 @@
             <h3 class="m_3">@Html.DisplayFor(model => model.movieTitle)</h3>
             <p class="m_5">@Html.DisplayFor(model => model.movieLanguage)</p>
 
-            <span class="m_link">@Html.DisplayFor(model => model.movieTrailerURL)</span>
+            <span class="m_link"><a href="@Html.DisplayFor(model => model.movieTrailerURL)">Youtube trailer</a> </span>
             <p class="m_text2">@Html.DisplayFor(model => model.movieGenre)</p>
             <p class="m_text2">@Html.DisplayFor(model => model.movieRating)</p>
             <p class="m_text2">@Html.DisplayFor(model => model.movieRunningTime)</p>
