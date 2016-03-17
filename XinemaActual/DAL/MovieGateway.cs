@@ -43,5 +43,23 @@ namespace XinemaActual.DAL
             }
             return data.OrderBy(t => t.movieTitle);
         }
+
+        public IEnumerable<Movie> SelectAllMovies()
+        {
+            //var cinemas = from t in SelectAll()
+            //              select t;
+            //cinemas = from t in SelectAll()
+            //          where t.cinemaName.Contains("Golden Village") || t.cinemaAddress.Contains("Golden Village")
+            //          select t;
+
+
+            //var results = SelectAll();
+
+            //var test = from t in SelectAll().GroupBy(t => t.movieTitle)
+            //           select t;
+
+            return SelectAll();
+
+        }
     }
 }

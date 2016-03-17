@@ -9,16 +9,16 @@
 <div class="container">
     <h2 class="head">Golden Village</h2>
     <div class="top-box">
-        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Golden Village")))
+        @foreach (var item in Model.Where(item => item.showtimeCinemaName.Contains("Golden Village")))
         {
 
 
             <div class="col-sm-6 col-md-6">
                 <div class="thumbnail">
                     <div class="caption">
-                        <h3>@Html.DisplayFor(modelItem => item.movieTitle)</h3>
-                        <h4>@Html.DisplayFor(modelItem => item.cinemaName)</h4>
-                        @*<h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>*@
+                        <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
+                        <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
+                        <h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>
                         <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
                     </div>
                 </div>
@@ -29,34 +29,36 @@
     <div class="clear"></div>
     <h2 class="head">Cathay</h2>
     <div class="top-box">
-        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Cathay")))
+        @foreach (var item in Model.Where(item => item.showtimeCinemaName.Contains("Cathay")))
         {
 
-                <div class="col-sm-6 col-md-6">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <h3>@Html.DisplayFor(modelItem => item.movieTitle)</h3>
-                            <h4>@Html.DisplayFor(modelItem => item.cinemaName)</h4>
-                            @*<h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>*@
-                            <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
-                        </div>
+
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
+                        <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
+                        <h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>
+                        <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
                     </div>
                 </div>
+            </div>
 
         }
     </div>
     <div class="clear"></div>
     <h2 class="head">Shaw</h2>
     <div class="top-box">
-        @foreach (var item in Model.Where(item => item.cinemaName.Contains("Shaw")))
+        @foreach (var item in Model.Where(item => item.showtimeCinemaName.Contains("Shaw")))
         {
+
 
             <div class="col-sm-6 col-md-6">
                 <div class="thumbnail">
                     <div class="caption">
-                        <h3>@Html.DisplayFor(modelItem => item.movieTitle)</h3>
-                        <h4>@Html.DisplayFor(modelItem => item.cinemaName)</h4>
-                        @*<h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>*@
+                        <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
+                        <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
+                        <h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>
                         <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
                     </div>
                 </div>
