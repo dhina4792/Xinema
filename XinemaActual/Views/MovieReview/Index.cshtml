@@ -1,0 +1,26 @@
+﻿@model IEnumerable<XinemaActual.Models.MovieReview>
+
+
+@{
+    ViewBag.Title = "Movie Review";
+}
+<ul class="breadcrumb breadcrumb__t">Movie Review</ul>
+
+<div class="container">
+    <div class="top-box">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        @Html.ActionLink(item.movieReviewName, "Details", new { id = item.movieReviewID }, new { @class = "h3" })
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="clear"></div>
+</div>
+   

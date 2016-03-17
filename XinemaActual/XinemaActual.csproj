@@ -212,11 +212,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CinemasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MovieReviewController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
     <Compile Include="DAL\CinemaGateway.cs" />
     <Compile Include="DAL\DataGateway.cs" />
     <Compile Include="DAL\IDataGateway.cs" />
+    <Compile Include="DAL\MovieReviewGateway.cs" />
     <Compile Include="DAL\MovieGateway.cs" />
     <Compile Include="DAL\ShowtimeGateway.cs" />
     <Compile Include="DAL\XinemaActualContext.cs" />
@@ -365,6 +367,8 @@
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Showtimes\Index.cshtml" />
+    <Content Include="Views\MovieReview\Index.cshtml" />
+    <Content Include="Views\MovieReview\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
