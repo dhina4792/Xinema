@@ -33,8 +33,9 @@ namespace XinemaActual.Controllers
              .AddTitle("Movie Review Rating for " + movieReviewGateway.SelectById(id).movieReviewName)
              .AddSeries(
                  name: "Movie",
-                 xValue: new[] { "IMDB", "Rotten Tomatoes" },
-                 yValues: new[] { movieReviewGateway.SelectById(id).movieReviewIMDB, movieReviewGateway.SelectById(id).movieReviewRottenTomato });
+                 xValue: new[] { "IMDB", "Rotten Tomatoes","Overall" },
+                 yValues: new[] { movieReviewGateway.SelectById(id).movieReviewIMDB, movieReviewGateway.SelectById(id).movieReviewRottenTomato,
+               ((double.Parse(movieReviewGateway.SelectById(id).movieReviewIMDB) + double.Parse(movieReviewGateway.SelectById(id).movieReviewRottenTomato))/2).ToString() });
             chart.Save("~/Content/chart.jpg", "jpeg");
             // Return the contents of the Stream to the client
             return View(movieReviewGateway.SelectById(id));
