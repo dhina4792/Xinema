@@ -32,25 +32,25 @@ namespace XinemaActual.DAL
         }
         public IEnumerable<Cinema> SortBy(int id)
         {
-            var cinemas = from t in SelectAll()
+            var cinemas = from t in SelectAllCinemas()
                           select t;
             switch (id)
             {
 
                 case 1:
 
-                    cinemas = from t in SelectAll()
+                    cinemas = from t in SelectAllCinemas()
                               where t.cinemaName.Contains("Shaw") || t.cinemaAddress.Contains("Shaw")
                               select t;
                     return cinemas;
                 case 2:
-                    cinemas = from t in SelectAll()
+                    cinemas = from t in SelectAllCinemas()
                               where t.cinemaName.Contains("Golden Village") || t.cinemaAddress.Contains("Golden Village")
                               select t;
                     return cinemas;
 
                 case 3:
-                    cinemas = from t in SelectAll()
+                    cinemas = from t in SelectAllCinemas()
                               where t.cinemaName.Contains("Cathay") || t.cinemaAddress.Contains("Cathay")
                               select t;
                     return cinemas;
@@ -69,6 +69,12 @@ namespace XinemaActual.DAL
                             
             //                  }).ToList();
             return cinemas;
+        }
+        public IEnumerable<Cinema> SelectAllCinemas()
+        {
+            IEnumerable<Cinema> groupedCinemas = data.GroupBy(t => t.cinemaName).Select(t => t.FirstOrDefault());
+            return groupedCinemas;
+
         }
     }
 }

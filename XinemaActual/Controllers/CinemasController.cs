@@ -52,7 +52,7 @@ namespace XinemaActual.Controllers
                 }
 
             }
-            return View(cinemaGateway.SelectAll());
+            return View(cinemaGateway.SelectAllCinemas());
         }
         public ActionResult Details(int? id)
         {
@@ -64,6 +64,7 @@ namespace XinemaActual.Controllers
             var point = locationService.GetLatLongFromAddress(addressWithoutPhone);
             ViewBag.latCinema = point.Latitude;
             ViewBag.longCinema = point.Longitude;
+            TempData["cinemaName"] = cinemaGateway.SelectById(id).cinemaName;
             return View(model);
         }
     }

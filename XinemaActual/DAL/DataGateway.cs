@@ -14,11 +14,12 @@ namespace XinemaActual.DAL
     {
         internal XinemaActualContext db = new XinemaActualContext();
         internal DbSet<T> data = null;
-
+        internal string currDate;
 
         public DataGateway()
         {
             this.data = db.Set<T>();
+            currDate = DateTime.Now.ToString("dd/MM/yyyy");
         }
         public T Delete(int? id)
         {
