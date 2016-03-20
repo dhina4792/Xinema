@@ -24,7 +24,6 @@ namespace XinemaActual.Controllers
         }
         public ActionResult Index()
         {
-
             var IMDBSet = new DataSet();
             IMDBSet.ReadXmlSchema(Server.MapPath("~/App_Data/IMDB.xsd"));
             IMDBSet.ReadXml(Server.MapPath("~/App_Data/IMDB.xml"));
@@ -69,16 +68,5 @@ namespace XinemaActual.Controllers
             return base.File("~/Content/barChart.jpg","jpeg");
 
         }
-        public ActionResult IMDBChart()
-        {
-            return base.File("~/Content/IMDBChart.jpg", "jpeg");
-
-        }
-        public ActionResult RTChart()
-        {
-            return base.File("~/Content/RTChart.jpg", "jpeg");
-
-        }
-
     }
 }
