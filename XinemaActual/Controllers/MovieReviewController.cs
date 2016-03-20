@@ -25,29 +25,19 @@ namespace XinemaActual.Controllers
         public ActionResult Index()
         {
 
-            //var IMDBSet = new DataSet();
-            //IMDBSet.ReadXmlSchema(Server.MapPath("~/App_Data/IMDB.xsd"));
-            //IMDBSet.ReadXml(Server.MapPath("~/App_Data/IMDB.xml"));
-            //var IMDBView = new DataView(IMDBSet.Tables[0]);
             var IMDBChart = new Chart(width: 600, height: 400)
                 .AddTitle("Top Grossing IMDB Box Office")
                 .AddSeries("Default", chartType: "Pie",
-                    //xValue: IMDBView, xField: "MovieName",
-                    //yValues: IMDBView, yFields: "MovieReview");
-                    xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
-                    yValues: new[] { "2", "6", "4", "5", "3" });
+                    xValue: new[] { "Zootopia", "10 Cloverfield Land", "Deadpool"},
+                    yValues: new[] { "144","24.7","328.2" });
             IMDBChart.Save("~/Content/IMDBChart.jpg", "jpeg");
 
-            //var RTSet = new DataSet();
-            //RTSet.ReadXmlSchema(Server.MapPath("~/App_Data/RT.xsd"));
-            //RTSet.ReadXml(Server.MapPath("~/App_Data/RT.xml"));
-            //var RTView = new DataView(RTSet.Tables[0]);
-            //var RTChart = new Chart(width: 600, height: 400)
-            //    .AddTitle("Top Grossing Rotten Tomatoes Box Office")
-            //    .AddSeries("Default", chartType: "Pie",
-            //        xValue: RTView, xField: "MovieName",
-            //        yValues: RTView, yFields: "MovieReview");
-            //RTChart.Save("~/Content/RTChart.jpg", "jpeg");
+            var RTChart = new Chart(width: 600, height: 400)
+                .AddTitle("Top Grossing Rotten Tomatoes Box Office")
+                .AddSeries("Default", chartType: "Pie",
+                    xValue: new[] { "Zootopia", "10 Cloverfield Land", "Deadpool" },
+                    yValues: new[] { "51.3", "24.7", "10.9" });
+            RTChart.Save("~/Content/RTChart.jpg", "jpeg");
 
             return View(movieReviewGateway.SelectAll());
 

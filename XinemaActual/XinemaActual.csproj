@@ -208,12 +208,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Data\RT.cs">
-      <DependentUpon>RT.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="App_Data\IMDB.cs">
-      <DependentUpon>IMDB.xsd</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CinemasController.cs" />
@@ -241,19 +235,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\RT.xml" />
-    <Content Include="App_Data\IMDB.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\etalage.css" />
     <Content Include="Content\form.css" />
     <Content Include="Content\fwslider.css" />
-    <Content Include="Content\IMDBChart.jpg" />
     <Content Include="Content\magnific-popup.css" />
     <Content Include="Content\megamenu.css" />
     <Content Include="Content\nivo-slider.css" />
-    <Content Include="Content\RTChart.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="Content\zoome-min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -330,26 +320,6 @@
     <Content Include="images\cart.psd" />
     <Content Include="images\cart2.psd" />
     <Content Include="images\logo.psd" />
-    <Content Include="App_Data\IMDB.xsc">
-      <DependentUpon>IMDB.xsd</DependentUpon>
-    </Content>
-    <Content Include="App_Data\RT.xsc">
-      <DependentUpon>RT.xsd</DependentUpon>
-    </Content>
-    <None Include="App_Data\RT.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RT.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="App_Data\RT.xss">
-      <DependentUpon>RT.xsd</DependentUpon>
-    </Content>
-    <None Include="App_Data\IMDB.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="App_Data\IMDB.xss">
-      <DependentUpon>IMDB.xsd</DependentUpon>
-    </Content>
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -400,7 +370,9 @@
     <Content Include="Views\Showtimes\Index.cshtml" />
     <Content Include="Views\MovieReview\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
