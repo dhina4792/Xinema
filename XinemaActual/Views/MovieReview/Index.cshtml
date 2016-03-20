@@ -10,8 +10,8 @@
 
         <table>
             <tr>
-                @*<td><img class="inline" src="~/Content/IMDBChart.jpg" /></td>
-                <td><img class="inline" src="~/Content/RTChart.jpg" /></td>*@
+                <td><img class="inline" src="@Url.Action("IMDBChart")" /></td>
+                <td><img class="inline" src="@Url.Action("RTChart")" /></td>
             </tr>
         </table>
         @foreach (var item in Model)
