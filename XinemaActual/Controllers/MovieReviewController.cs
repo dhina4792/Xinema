@@ -25,15 +25,17 @@ namespace XinemaActual.Controllers
         public ActionResult Index()
         {
 
-            var IMDBSet = new DataSet();
-            IMDBSet.ReadXmlSchema(Server.MapPath("~/App_Data/IMDB.xsd"));
-            IMDBSet.ReadXml(Server.MapPath("~/App_Data/IMDB.xml"));
-            var IMDBView = new DataView(IMDBSet.Tables[0]);
+            //var IMDBSet = new DataSet();
+            //IMDBSet.ReadXmlSchema(Server.MapPath("~/App_Data/IMDB.xsd"));
+            //IMDBSet.ReadXml(Server.MapPath("~/App_Data/IMDB.xml"));
+            //var IMDBView = new DataView(IMDBSet.Tables[0]);
             var IMDBChart = new Chart(width: 600, height: 400)
                 .AddTitle("Top Grossing IMDB Box Office")
                 .AddSeries("Default", chartType: "Pie",
-                    xValue: IMDBView, xField: "MovieName",
-                    yValues: IMDBView, yFields: "MovieReview");
+                    //xValue: IMDBView, xField: "MovieName",
+                    //yValues: IMDBView, yFields: "MovieReview");
+                    xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
+                    yValues: new[] { "2", "6", "4", "5", "3" });
             IMDBChart.Save("~/Content/IMDBChart.jpg", "jpeg");
 
             //var RTSet = new DataSet();
