@@ -4,7 +4,18 @@
     ViewBag.Title = "All Showtimes";
 
 }
-
+<div class="pull-right">
+    @Html.Label("Sort by Cinemas")
+    @Html.DropDownList("CinemaDropDownListItems", null, new { onchange = "document.location.href='/Showtimes/Index?cID='+this.value;" })
+</div>
+<div class="pull-right">
+    @Html.Label("Sort by Movies")
+    @Html.DropDownList("MovieDropDownListItems", null, new { onchange = "document.location.href='/Showtimes/Index?mID='+this.value;" })
+</div>
+<div class="pull-left">
+    @Html.Label("Sort by Date")
+    @Html.DropDownList("DateDropDownListItems", null, new { onchange = "document.location.href='/Showtimes/Index?dID='+this.value;" })
+</div>
 <div class="clear"></div>
 <div class="container">
     <h2 class="head">Golden Village</h2>
@@ -18,7 +29,6 @@
                     <div class="caption">
                         <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
                         <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
-                        <h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>
                         <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
                     </div>
                 </div>
@@ -38,7 +48,6 @@
                     <div class="caption">
                         <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
                         <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
-                        <h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>
                         <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
                     </div>
                 </div>
@@ -58,7 +67,6 @@
                     <div class="caption">
                         <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
                         <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
-                        <h5>@Html.DisplayFor(modelItem => item.showtimeDate)</h5>
                         <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
                     </div>
                 </div>

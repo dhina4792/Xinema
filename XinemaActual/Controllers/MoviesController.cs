@@ -38,12 +38,13 @@ namespace XinemaActual.Controllers
                 }
                 return View(movieGateway.SortBy((int)id));
             }
-            return View(movieGateway.SelectAll());
+            return View(movieGateway.SelectAllMovies());
 
 
         }
         public ActionResult Details(int? id)
         {
+            TempData["movieName"] = movieGateway.SelectById(id).movieTitle;
             return View(movieGateway.SelectById(id));
         }
     }

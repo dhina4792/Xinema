@@ -36,30 +36,19 @@ namespace XinemaActual.DAL
 
                 case 1:
 
-                    return data.OrderByDescending(t => t.movieTitle);
+                    return SelectAllMovies().OrderByDescending(t => t.movieTitle);
 
 
 
             }
-            return data.OrderBy(t => t.movieTitle);
+            return SelectAllMovies().OrderBy(t => t.movieTitle);
         }
 
         public IEnumerable<Movie> SelectAllMovies()
         {
-            //var cinemas = from t in SelectAll()
-            //              select t;
-            //cinemas = from t in SelectAll()
-            //          where t.cinemaName.Contains("Golden Village") || t.cinemaAddress.Contains("Golden Village")
-            //          select t;
-
-
-            //var results = SelectAll();
-
-            //var test = from t in SelectAll().GroupBy(t => t.movieTitle)
-            //           select t;
-
-            return SelectAll();
-
+            IEnumerable<Movie> groupedMovies= data.GroupBy(t => t.movieTitle).Select(t => t.FirstOrDefault());
+            return groupedMovies;
+                                                      
         }
     }
 }
