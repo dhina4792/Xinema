@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using XinemaActual.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
+using Abot.Crawler;
+using Abot.Poco;
 
 namespace XinemaActual.DAL
 {

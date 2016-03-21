@@ -26,7 +26,7 @@ namespace XinemaActual.App_Start
     .WithIdentity("cinema_trigger", "scrapping")
     .StartNow()
     .WithSimpleSchedule(x => x
-        .WithIntervalInMinutes(120)
+        .WithIntervalInSeconds(30)
         .RepeatForever())
     .Build();
 
@@ -41,28 +41,32 @@ namespace XinemaActual.App_Start
             {
                 System.Diagnostics.Debug.WriteLine("Executing cinema job...");
                 CinemaGateway cinemaGateway = new CinemaGateway();
-                // Clear existing database first
-                cinemaGateway.DeleteRange(cinemaGateway.SelectAll());
-                // Scrap new data
-                List<Cinema> cinemaList = cinemaGateway.GetExternalCinemasList("https://www.google.com/movies?near=singapore&rl=1&stok=ABAPP2tdNR_5cLRa-6emW2UtecEL44SX2A%3A1456036737594");
+                //// Clear existing database first
+                //cinemaGateway.DeleteRange(cinemaGateway.SelectAll());
+                //// Scrap new data
+                //List<Cinema> cinemaList = cinemaGateway.GetExternalCinemasList("https://www.google.com/movies?near=singapore&rl=1&stok=ABAPP2tdNR_5cLRa-6emW2UtecEL44SX2A%3A1456036737594");
 
-                int size = cinemaList.Count() - 1;
+                //int size = cinemaList.Count() - 1;
+                //Cinema cinema = new Cinema();
+                //// insert new data
+                //while (size >= 0)
+                //{
+                //    System.Diagnostics.Debug.WriteLine("size: " + size);
+                //    //cinema.CinemaName = "name";
+                //    //cinema.CinemaAddress = "addr";
+                //    //cinemaGateway.Insert(cinema);
+                //    cinema.cinemaName = cinemaList[size].cinemaName;
+                //    System.Diagnostics.Debug.WriteLine("Cinena Name: " + cinema.cinemaName);
+                //    cinema.cinemaAddress = cinemaList[size].cinemaAddress;
+                //    System.Diagnostics.Debug.WriteLine("Cinema Address: " + cinema.cinemaAddress);
+                //    cinemaGateway.Insert(cinema);
+                //    //cinemaGateway.Update(cinema);
+                //    size--;
+                //}
                 Cinema cinema = new Cinema();
-                // insert new data
-                while (size >= 0)
-                {
-                    System.Diagnostics.Debug.WriteLine("size: " + size);
-                    //cinema.CinemaName = "name";
-                    //cinema.CinemaAddress = "addr";
-                    //cinemaGateway.Insert(cinema);
-                    cinema.cinemaName = cinemaList[size].cinemaName;
-                    System.Diagnostics.Debug.WriteLine("Cinena Name: " + cinema.cinemaName);
-                    cinema.cinemaAddress = cinemaList[size].cinemaAddress;
-                    System.Diagnostics.Debug.WriteLine("Cinema Address: " + cinema.cinemaAddress);
-                    cinemaGateway.Insert(cinema);
-                    //cinemaGateway.Update(cinema);
-                    size--;
-                }
+                cinema.cinemaName = "test cinema name for nuget package test";
+                cinema.cinemaAddress = "test cinema address for nuget package test";
+                cinemaGateway.Insert(cinema);
                 System.Diagnostics.Debug.WriteLine("Cinema job ended... ");
             }
         }
