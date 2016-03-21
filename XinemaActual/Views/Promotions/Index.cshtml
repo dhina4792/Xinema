@@ -1,0 +1,61 @@
+﻿@model IEnumerable<XinemaActual.Models.Promotion>
+
+@{
+    ViewBag.Title = "Promotions";
+}
+
+<ul class="breadcrumb breadcrumb__t">Promotions</ul>
+
+<div class="container">
+    <div class="top-box">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-6">
+                <div class="thumbnail">
+
+                    <div class="caption">
+                        <h3>@item.promotionCinemaName</h3>
+                        @*@Html.ActionLink(item.promotionCinemaName, "Details", new { id = item.promotionID }, new { @class = "h3" })*@
+                        <p>@item.promotionDescription</p>
+
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    </div>
+
+
+
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.promotionDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.promotionCinemaName)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.promotionDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.promotionCinemaName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.promotionID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.promotionID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.promotionID })
+                </td>
+            </tr>
+        }
+
+        </table>*@

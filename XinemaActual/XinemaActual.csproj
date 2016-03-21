@@ -214,7 +214,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieReviewController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Controllers\ShowtimesController.cs" />
+    <Compile Include="DAL\PromotionGateway.cs" />
     <Compile Include="DAL\CinemaGateway.cs" />
     <Compile Include="DAL\DataGateway.cs" />
     <Compile Include="DAL\IDataGateway.cs" />
@@ -369,6 +371,7 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Showtimes\Index.cshtml" />
     <Content Include="Views\MovieReview\Index.cshtml" />
+    <Content Include="Views\Promotions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
