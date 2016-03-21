@@ -22,8 +22,9 @@ namespace XinemaActual.App_Start
     .WithIdentity("cinema_job", "scraping")
     .Build();
 
-            ITrigger trigger = TriggerBuilder.Create()
-    // Actual code to run job at 0000HRS
+            ITrigger trigger1 = TriggerBuilder.Create()
+    .WithIdentity("cinema_trigger", "scrapping")
+    .StartNow()
     .WithDailyTimeIntervalSchedule
       (s =>
          s.WithIntervalInHours(24)
@@ -31,14 +32,16 @@ namespace XinemaActual.App_Start
         .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
       )
     .Build();
-    //.WithIdentity("cinema_trigger", "scrapping")
-    //.StartNow()
-    //.WithSimpleSchedule(x => x
-    //    .WithIntervalInSeconds(30)
-    //    .RepeatForever())
-    //.Build();
 
-            scheduler.ScheduleJob(cinemaJob, trigger);
+            ITrigger trigger2 = TriggerBuilder.Create()
+.WithIdentity("cinema_trigger", "scrapping")
+.StartNow()
+            .WithSimpleSchedule(x => x
+                .WithIntervalInHours(24)
+                .RepeatForever())
+            .Build();
+
+            scheduler.ScheduleJob(cinemaJob, trigger2);
 
 
         }
@@ -49,7 +52,7 @@ namespace XinemaActual.App_Start
             {
                 System.Diagnostics.Debug.WriteLine("Executing cinema job...");
                 CinemaGateway cinemaGateway = new CinemaGateway();
-                 //Clear existing database first
+                //Clear existing database first
                 cinemaGateway.DeleteRange(cinemaGateway.SelectAll());
                 // Scrap new data
                 List<Cinema> cinemaList = cinemaGateway.GetExternalCinemasList("https://www.google.com/movies?near=singapore&rl=1&stok=ABAPP2tdNR_5cLRa-6emW2UtecEL44SX2A%3A1456036737594");

@@ -24,7 +24,8 @@ namespace XinemaActual.Controllers
         // GET: Promotions
         public ActionResult Index()
         {
-            return View(promotionGateway.SelectAllPromotions());
+            
+            return View(promotionGateway.SelectAll());
         }
 
     //    // GET: Promotions/Details/5
