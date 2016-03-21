@@ -23,12 +23,20 @@ namespace XinemaActual.App_Start
     .Build();
 
             ITrigger trigger = TriggerBuilder.Create()
-    .WithIdentity("cinema_trigger", "scrapping")
-    .StartNow()
-    .WithSimpleSchedule(x => x
-        .WithIntervalInSeconds(30)
-        .RepeatForever())
+    // Actual code to run job at 0000HRS
+    .WithDailyTimeIntervalSchedule
+      (s =>
+         s.WithIntervalInHours(24)
+        .OnEveryDay()
+        .StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(0, 0))
+      )
     .Build();
+    //.WithIdentity("cinema_trigger", "scrapping")
+    //.StartNow()
+    //.WithSimpleSchedule(x => x
+    //    .WithIntervalInSeconds(30)
+    //    .RepeatForever())
+    //.Build();
 
             scheduler.ScheduleJob(cinemaJob, trigger);
 
