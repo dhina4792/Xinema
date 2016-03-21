@@ -25,9 +25,9 @@ namespace XinemaActual.App_Start
             ITrigger trigger = TriggerBuilder.Create()
     .WithIdentity("cinema_trigger", "scrapping")
     .StartNow()
-    //.WithSimpleSchedule(x => x
-    //    .WithIntervalInMinutes(120)
-    //    .RepeatForever())
+    .WithSimpleSchedule(x => x
+        .WithIntervalInMinutes(120)
+        .RepeatForever())
     .Build();
 
             scheduler.ScheduleJob(cinemaJob, trigger);
