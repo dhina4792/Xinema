@@ -29,6 +29,12 @@ namespace XinemaActual.DAL
             return obj;
         }
 
+        public void DeleteRange(IEnumerable<T> entities)
+        {
+            data.RemoveRange(entities);
+            db.SaveChanges();
+        }
+
         public void Insert(T obj)
         {
             data.Add(obj);

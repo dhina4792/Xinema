@@ -9,7 +9,7 @@ namespace XinemaActual.DAL
 {
     public class PromotionGateway : DataGateway<Promotion>
     {
-        private List<SelectListItem> CinemaOrderByDropDownItems;
+        //private List<SelectListItem> CinemaOrderByDropDownItems;
 
         public PromotionGateway()
         {
