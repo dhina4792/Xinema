@@ -24,7 +24,6 @@ namespace XinemaActual.App_Start
 
             ITrigger trigger1 = TriggerBuilder.Create()
     .WithIdentity("cinema_trigger", "scrapping")
-    .StartNow()
     .WithDailyTimeIntervalSchedule
       (s =>
          s.WithIntervalInHours(24)
@@ -41,7 +40,7 @@ namespace XinemaActual.App_Start
                 .RepeatForever())
             .Build();
 
-            scheduler.ScheduleJob(cinemaJob, trigger2);
+            scheduler.ScheduleJob(cinemaJob, trigger1);
 
 
         }
