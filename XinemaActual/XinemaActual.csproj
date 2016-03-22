@@ -406,7 +406,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cinemas\Details.cshtml" />
     <Content Include="Views\Cinemas\Index.cshtml" />
-    <None Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Showtimes\Index.cshtml" />
