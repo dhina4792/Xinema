@@ -257,6 +257,8 @@
     <Compile Include="DAL\MovieGateway.cs" />
     <Compile Include="DAL\ShowtimeGateway.cs" />
     <Compile Include="DAL\XinemaActualContext.cs" />
+    <Compile Include="DataScrapingJobs\CinemaJob.cs" />
+    <Compile Include="DataScrapingLogic\GoogleMoviesScraper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,7 +267,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieReview.cs" />
     <Compile Include="Models\Promotion.cs" />
-    <Compile Include="Models\Showtime.cs" />
+    <Compile Include="Models\ShowTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

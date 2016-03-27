@@ -13,5 +13,25 @@ namespace XinemaActual.Models
 
         public string cinemaName { get; set; }
         public string cinemaAddress { get; set; }
+
+        public List<Movie> cinemaMovies { get; set; }
+
+        public string displayMovies()
+        {
+
+            foreach (Movie m in cinemaMovies)
+            {
+                return m.ToString();
+            }
+
+            return null;
+
+
+        }
+
+        public override string ToString()
+        {
+            return cinemaName;
+        }
     }
 }

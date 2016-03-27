@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace XinemaActual.Models
 {
-    public class Showtime
+    public class ShowTime
     {
         [Key]
         public int showtimeID { get; set; }

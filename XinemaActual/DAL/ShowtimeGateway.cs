@@ -8,7 +8,7 @@ using XinemaActual.Models;
 
 namespace XinemaActual.DAL
 {
-    public class ShowtimeGateway : DataGateway<Showtime>
+    public class ShowtimeGateway : DataGateway<ShowTime>
     {
         private List<SelectListItem> cinemaItems = null;
         private List<SelectListItem> dateItems = null;
@@ -60,7 +60,7 @@ namespace XinemaActual.DAL
 
                 i++;
                 DateTime d;
-                DateTime.TryParseExact(item.Key.ToString(), "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out d);
+                DateTime.TryParseExact(item.Key.ToString(), "dd/mm/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out d);
                 if (d.Date == DateTime.Now.Date)
                 {
                     dateItems.Add(new SelectListItem { Text = item.Key.ToString(), Value = null, Selected = true });
