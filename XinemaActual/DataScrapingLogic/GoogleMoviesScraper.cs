@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using OpenQA.Selenium;
 using OpenQA.Selenium.PhantomJS;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XinemaActual.Models;
 
 namespace XinemaActual.DataScrapingLogic
@@ -35,7 +29,7 @@ namespace XinemaActual.DataScrapingLogic
             }
         }
 
-        public GoogleMoviesScraper(string targetURLIn)
+        public GoogleMoviesScraper()
         {
             allCinemas = new List<Cinema>();
             allMovies = new List<Movie>();
@@ -43,7 +37,6 @@ namespace XinemaActual.DataScrapingLogic
             uniqueMovies = new List<string>();
             driver = new PhantomJSDriver();
             isComplete = false;
-            targetURL = targetURLIn;
         }
 
         public void scrapCinemaInfo()
@@ -58,9 +51,10 @@ namespace XinemaActual.DataScrapingLogic
             driver.Navigate().GoToUrl(TargetURL);
 
 
+            //scrapAllPageCinema(driver);
             scrapOnePageCinema(driver);
             isComplete = true;
-            //scrapAllPageCinema(driver);
+            
 
 
 

@@ -15,16 +15,19 @@ namespace XinemaActual.DataScrapingJobs
         {
             System.Diagnostics.Debug.WriteLine("Executing cinema job...");
             CinemaGateway cinemaGateway = new CinemaGateway();
-            GoogleMoviesScraper gms = new GoogleMoviesScraper("https://www.google.com/movies?near=singapore&rl=1&stok=ABAPP2tdNR_5cLRa-6emW2UtecEL44SX2A%3A1456036737594");
-
+            GoogleMoviesScraper gms = new GoogleMoviesScraper();
+            gms.TargetURL = "https://www.google.com/movies?near=singapore&rl=1&stok=ABAPP2tdNR_5cLRa-6emW2UtecEL44SX2A%3A1456036737594";
             // Scrap new data
+            gms.scrapCinemaInfo();
             List<Cinema> cinemaList = gms.getCinemas();
-            // Check if cinemaList is valid
-            if (cinemaList.Count() != 0)
-            {
+            System.Diagnostics.Debug.WriteLine("cinemaList.Count() "+cinemaList.Count());
+            // Check if cinemaList is done
+          
+            System.Threading.SpinWait.SpinUntil(() => gms.getIsComplete() == true);
                 //Clear existing database first
-                cinemaGateway.DeleteRange(cinemaGateway.SelectAll());
-                int size = cinemaList.Count() - 1;
+            cinemaGateway.DeleteRange(cinemaGateway.SelectAllCinemas());
+            System.Diagnostics.Debug.WriteLine("Deleted database");
+            int size = cinemaList.Count() - 1;
                 Cinema cinema = new Cinema();
                 // insert new data
                 while (size >= 0)
@@ -37,7 +40,8 @@ namespace XinemaActual.DataScrapingJobs
                     cinemaGateway.Insert(cinema);
                     size--;
                 }
-            }
+            
+            
             System.Diagnostics.Debug.WriteLine("Cinema job ended... ");
         }
     }
