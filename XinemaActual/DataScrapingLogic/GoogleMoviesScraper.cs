@@ -51,8 +51,8 @@ namespace XinemaActual.DataScrapingLogic
             driver.Navigate().GoToUrl(TargetURL);
 
 
-            //scrapAllPageCinema(driver);
-            scrapOnePageCinema(driver);
+            scrapAllPageCinema(driver);
+            //scrapOnePageCinema(driver);
             isComplete = true;
             
 
@@ -66,7 +66,7 @@ namespace XinemaActual.DataScrapingLogic
             for (;;)
             {
                 //add current page cinemas 
-                var cinemasname = ScrapCinenaAndMovies(driver);
+                var cinemasname = ScrapCinemaAndMovies(driver);
 
                 //add all
                 allCinemas.AddRange(cinemasname);
@@ -94,7 +94,7 @@ namespace XinemaActual.DataScrapingLogic
             for (;;)
             {
                 //add current page cinemas 
-                var cinemasName = ScrapCinenaAndMovies(driver);
+                var cinemasName = ScrapCinemaAndMovies(driver);
 
                 //add all
                 allCinemas.AddRange(cinemasName);
@@ -104,7 +104,7 @@ namespace XinemaActual.DataScrapingLogic
         }
 
 
-        private List<Cinema> ScrapCinenaAndMovies(IWebDriver driver)
+        private List<Cinema> ScrapCinemaAndMovies(IWebDriver driver)
         {
             string[] separators = { "\r", "\n" };
             DateTime thisDay = DateTime.Today;
@@ -129,13 +129,11 @@ namespace XinemaActual.DataScrapingLogic
                     //movie details
                     currMov.movieTitle = movie.FindElement(By.CssSelector(".name")).Text;
                     string movieInfo = movie.FindElement(By.CssSelector(".info")).Text;
-                    currMov.movieRunningTime = spiltMovieInfo(movieInfo, 0);
-                    currMov.movieRating = spiltMovieInfo(movieInfo, 1);
-                    currMov.movieGenre = spiltMovieInfo(movieInfo, 2);
-                    currMov.movieLanguage = spiltMovieInfo(movieInfo, 3);
-                    currMov.moveShowTimes = movie.FindElement(By.CssSelector(".times")).Text;
-                    //
-
+                    //if movie is not parseable skip this movie loop
+                    if (!IsValidMovieInfo(movieInfo))
+                    {
+                        break;
+                    }
                     //Console.WriteLine("Movie scrapped : " + currMov.ToString());
                     showtime.showtimeStartTime = currMov.moveShowTimes;
                     showtime.showtimeDate = thisDay.ToString("d/MM/yyyy");
@@ -188,6 +186,18 @@ namespace XinemaActual.DataScrapingLogic
 
             string[] spiltted = str.Split('-');
             return spiltted[offset];
+        }
+
+        public bool IsValidMovieInfo(string str)
+        {
+            if (str.Split('-').Length < 4)
+            {
+                return false;//movie info part less than 4 return -1 to skip this
+            }
+            else
+            {
+                return true;//success
+            }
         }
 
         public bool getIsComplete()
