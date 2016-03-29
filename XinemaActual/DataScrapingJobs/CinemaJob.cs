@@ -68,7 +68,7 @@ namespace XinemaActual.DataScrapingJobs
                 movie.movieTrailerURL  = moviesList[movieIndex].movieTrailerURL;
                 movie.movieRunningTime = moviesList[movieIndex].movieRunningTime;
                 movie.movieLanguage = moviesList[movieIndex].movieLanguage;
-                movie.movieShowTimes = moviesList[movieIndex].movieShowTimes;
+
                 movieGateway.Insert(movie);
                 movieIndex--;
             }

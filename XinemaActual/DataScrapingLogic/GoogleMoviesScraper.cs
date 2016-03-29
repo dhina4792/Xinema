@@ -129,14 +129,18 @@ namespace XinemaActual.DataScrapingLogic
                     //movie details
                     currMov.movieTitle = movie.FindElement(By.CssSelector(".name")).Text;
                     string movieInfo = movie.FindElement(By.CssSelector(".info")).Text;
-                    currMov.movieShowTimes = movie.FindElement(By.CssSelector(".times")).Text;
+                    //currMov.movieShowTimes = movie.FindElement(By.CssSelector(".times")).Text;
                     //if movie is not parseable skip this movie loop
                     if (!IsValidMovieInfo(movieInfo))
                     {
                         break;
                     }
+                    currMov.movieRunningTime = spiltMovieInfo(movieInfo, 0);
+                    currMov.movieRating = spiltMovieInfo(movieInfo, 1);
+                    currMov.movieGenre = spiltMovieInfo(movieInfo, 2);
+                    currMov.movieLanguage = spiltMovieInfo(movieInfo, 3);
                     //Console.WriteLine("Movie scrapped : " + currMov.ToString());
-                    showtime.showtimeStartTime = currMov.movieShowTimes.ToString();
+                    showtime.showtimeStartTime = movie.FindElement(By.CssSelector(".times")).Text;
                     showtime.showtimeDate = thisDay.ToString("d/MM/yyyy");
                     showtime.showtimeTitle = currMov.movieTitle;
                     showtime.showtimeCinemaName = currentCinemaName;
@@ -153,7 +157,7 @@ namespace XinemaActual.DataScrapingLogic
                 allShowTime.AddRange(showtimeList);
 
                 allMovies.AddRange(movieList);
-                cinemaList.Add(new Cinema() { cinemaName = currentCinemaName, cinemaAddress = currentCinemaAddress, cinemaMovies = movieList });
+                cinemaList.Add(new Cinema() { cinemaName = currentCinemaName, cinemaAddress = currentCinemaAddress});
             }
 
             return cinemaList;
