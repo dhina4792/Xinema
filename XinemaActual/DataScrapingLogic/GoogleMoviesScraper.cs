@@ -51,8 +51,8 @@ namespace XinemaActual.DataScrapingLogic
             driver.Navigate().GoToUrl(TargetURL);
 
 
-            scrapAllPageCinema(driver);
-            //scrapOnePageCinema(driver);
+            //scrapAllPageCinema(driver);
+            scrapOnePageCinema(driver);
             isComplete = true;
             
 
@@ -128,17 +128,28 @@ namespace XinemaActual.DataScrapingLogic
 
                     //movie details
                     currMov.movieTitle = movie.FindElement(By.CssSelector(".name")).Text;
-                    string movieInfo = movie.FindElement(By.CssSelector(".info")).Text;
-                    //currMov.movieShowTimes = movie.FindElement(By.CssSelector(".times")).Text;
+                    var movieInfo = movie.FindElement(By.CssSelector(".info"));
+
                     //if movie is not parseable skip this movie loop
-                    if (!IsValidMovieInfo(movieInfo))
+                    if (!IsValidMovieInfo(movieInfo.Text))
                     {
                         break;
                     }
-                    currMov.movieRunningTime = spiltMovieInfo(movieInfo, 0);
-                    currMov.movieRating = spiltMovieInfo(movieInfo, 1);
-                    currMov.movieGenre = spiltMovieInfo(movieInfo, 2);
-                    currMov.movieLanguage = spiltMovieInfo(movieInfo, 3);
+                    try
+                    {
+                        var link = movieInfo.FindElement(By.LinkText("Trailer"));
+                        currMov.movieTrailerURL = link.GetAttribute("href");
+                    }
+                    catch (NoSuchElementException e)
+                    {
+                        Console.WriteLine("No trailer link found for " + currMov.movieTitle);
+                        currMov.movieTrailerURL = null;
+                    }
+    
+                    currMov.movieRunningTime = spiltMovieInfo(movieInfo.Text, 0);
+                    currMov.movieRating = spiltMovieInfo(movieInfo.Text, 1);
+                    currMov.movieGenre = spiltMovieInfo(movieInfo.Text, 2);
+                    currMov.movieLanguage = spiltMovieInfo(movieInfo.Text, 3);
                     //Console.WriteLine("Movie scrapped : " + currMov.ToString());
                     showtime.showtimeStartTime = movie.FindElement(By.CssSelector(".times")).Text;
                     showtime.showtimeDate = thisDay.ToString("d/MM/yyyy");

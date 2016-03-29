@@ -19,6 +19,13 @@ namespace XinemaActual.Models
         public string movieTrailerURL { get; set; }
         public string movieRunningTime { get; set; }
         public string movieLanguage { get; set; }
+        public string moviePlot { get; set; }
+        public string movieActors { get; set; }
+        public string moviePoster { get; set; }
+        public string movieDirector { get; set; }
+        public string movieWebsiteURL { get; set; }
+        public string movieIMDBRating { get; set; }
+        public string movieTomatoesRating { get; set; }
 
 
     }

@@ -6,6 +6,9 @@ using System.Web;
 using XinemaActual.DAL;
 using XinemaActual.Models;
 using XinemaActual.DataScrapingLogic;
+using Newtonsoft.Json.Linq;
+using System.Net;
+using System.IO;
 
 namespace XinemaActual.DataScrapingJobs
 {
@@ -17,6 +20,7 @@ namespace XinemaActual.DataScrapingJobs
             CinemaGateway cinemaGateway = new CinemaGateway();
             ShowtimeGateway showtimeGateway = new ShowtimeGateway();
             MovieGateway movieGateway = new MovieGateway();
+            MovieReviewGateway movieReviewGateway = new MovieReviewGateway();
             GoogleMoviesScraper gms = new GoogleMoviesScraper();
             gms.TargetURL = "https://www.google.com/movies?near=singapore&rl=1&stok=ABAPP2tdNR_5cLRa-6emW2UtecEL44SX2A%3A1456036737594";
             // Scrap new data
@@ -31,6 +35,7 @@ namespace XinemaActual.DataScrapingJobs
             //Clear existing database first
             cinemaGateway.DeleteRange(cinemaGateway.SelectAllCinemas());
             movieGateway.DeleteRange(movieGateway.SelectAll());
+            movieReviewGateway.DeleteRange(movieReviewGateway.SelectAll());
             System.Diagnostics.Debug.WriteLine("Deleted database");
             int cinemaIndex = cinemaList.Count() - 1;
             int showTimeIndex = showTimeList.Count() - 1;
@@ -38,6 +43,7 @@ namespace XinemaActual.DataScrapingJobs
             Cinema cinema = new Cinema();
             ShowTime showTime = new ShowTime();
             Movie movie = new Movie();
+            MovieReview movieReview = new MovieReview();
             // insert new data
             while (cinemaIndex >= 0)
             {
@@ -63,10 +69,38 @@ namespace XinemaActual.DataScrapingJobs
 
             while (movieIndex >= 0)
             {
+                string omdbQuery = moviesList[movieIndex].movieTitle;
+                omdbQuery = "http://www.omdbapi.com/?t=" + omdbQuery + "&plot=short&r=json&tomatoes=true";
+                var request = WebRequest.Create(omdbQuery);
+                request.ContentType = "application/json; charset=utf-8";
+                string jsonString;
+                System.Threading.Thread.Sleep(2000);
+                var response = (HttpWebResponse)request.GetResponse();
+
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    jsonString = sr.ReadToEnd();
+                }
+                System.Diagnostics.Debug.WriteLine(jsonString);
+
+                dynamic movieReviewJson = JObject.Parse(jsonString);
+                movieReview.movieReviewName = moviesList[movieIndex].movieTitle;
+                movieReview.movieReviewIMDB = movieReviewJson.imdbRating;
+                movieReview.movieReviewRottenTomato = movieReviewJson.tomatoRating;
+                
+                movieReviewGateway.Insert(movieReview);
+
+                movie.moviePlot = movieReviewJson.Plot;
+                movie.movieActors = movieReviewJson.Actors;
+                movie.movieDirector = movieReviewJson.Director;
+                movie.movieWebsiteURL = movieReviewJson.Website;
+                movie.movieIMDBRating = movieReviewJson.imdbRating;
+                movie.movieTomatoesRating = movieReviewJson.tomatoRating;
                 movie.movieTitle = moviesList[movieIndex].movieTitle;
                 movie.movieGenre = moviesList[movieIndex].movieGenre;
                 movie.movieRating = moviesList[movieIndex].movieRating;
                 movie.movieTrailerURL  = moviesList[movieIndex].movieTrailerURL;
+                System.Diagnostics.Debug.WriteLine("movie url"+moviesList[movieIndex].movieTrailerURL);
                 movie.movieRunningTime = moviesList[movieIndex].movieRunningTime;
                 movie.movieLanguage = moviesList[movieIndex].movieLanguage;
 

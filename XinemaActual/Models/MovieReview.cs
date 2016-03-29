@@ -14,5 +14,6 @@ namespace XinemaActual.Models
         public string movieReviewName { get; set; }
         public string movieReviewIMDB { get; set; }
         public string movieReviewRottenTomato { get; set; }
+       
     }
 }
