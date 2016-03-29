@@ -48,6 +48,7 @@ namespace XinemaActual.DataScrapingJobs
             while (showTimeIndex >= 0)
             {
                 showTime.showtimeStartTime = showTimeList[showTimeIndex].showtimeStartTime;
+                System.Diagnostics.Debug.WriteLine("ShowtimeStartTime: " + showTimeList[showTimeIndex].showtimeStartTime);
                 showTime.showtimeDate = showTimeList[showTimeIndex].showtimeDate;
                 showTime.showtimeTitle = showTimeList[showTimeIndex].showtimeTitle;
                 showTime.showtimeCinemaName = showTimeList[showTimeIndex].showtimeCinemaName;

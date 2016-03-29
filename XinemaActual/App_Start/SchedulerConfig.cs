@@ -37,7 +37,7 @@ namespace XinemaActual.App_Start
 .WithIdentity("cinema_trigger", "scrapping")
 .StartNow()
             .WithSimpleSchedule(x => x
-                .WithIntervalInHours(24)
+                .WithIntervalInHours(2)
                 .RepeatForever())
             .Build();
 

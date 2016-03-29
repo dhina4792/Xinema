@@ -54,24 +54,24 @@ namespace XinemaActual.DAL
             dateItems = new List<SelectListItem>();
             var dates = data.GroupBy(t => t.showtimeDate).ToArray();
             int i = 0;
-            //dateItems.Add(new SelectListItem { Text = "All", Value = i.ToString(), Selected = false });
+            dateItems.Add(new SelectListItem { Text = "All", Value = i.ToString(), Selected = false });
             foreach (var item in dates)
             {
 
                 i++;
                 DateTime d;
-                DateTime.TryParseExact(item.Key.ToString(), "dd/mm/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out d);
+                DateTime.TryParseExact(item.Key.ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out d);
                 if (d.Date == DateTime.Now.Date)
                 {
                     dateItems.Add(new SelectListItem { Text = item.Key.ToString(), Value = null, Selected = true });
-                    
+
                 }
-                else if(d.Date >= DateTime.Now.Date)
+                else
                 {
                     dateItems.Add(new SelectListItem { Text = item.Key.ToString(), Value = i.ToString(), Selected = false });
                 }
 
-                
+
             }
 
             return dateItems;
