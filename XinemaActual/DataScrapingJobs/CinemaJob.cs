@@ -90,6 +90,7 @@ namespace XinemaActual.DataScrapingJobs
                 
                 movieReviewGateway.Insert(movieReview);
 
+                movie.moviePoster = movieReviewJson.Poster;
                 movie.moviePlot = movieReviewJson.Plot;
                 movie.movieActors = movieReviewJson.Actors;
                 movie.movieDirector = movieReviewJson.Director;
