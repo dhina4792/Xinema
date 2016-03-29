@@ -30,6 +30,7 @@ namespace XinemaActual.DataScrapingJobs
             System.Threading.SpinWait.SpinUntil(() => gms.getIsComplete() == true);
             //Clear existing database first
             cinemaGateway.DeleteRange(cinemaGateway.SelectAllCinemas());
+            movieGateway.DeleteRange(movieGateway.SelectAll());
             System.Diagnostics.Debug.WriteLine("Deleted database");
             int cinemaIndex = cinemaList.Count() - 1;
             int showTimeIndex = showTimeList.Count() - 1;

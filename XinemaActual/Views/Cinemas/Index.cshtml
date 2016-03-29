@@ -112,6 +112,18 @@
             </div>
         }
     </div>
+    @foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
+    {
+        if (item.Selected == true && item.Text == "All")
+        {
+
+            <h2 class="head">Rex Cinemas</h2>
+
+
+
+        }
+
+    }
     <div class="top-box">
         @foreach (var item in Model.Where(item => item.cinemaName.Contains("Rex") || item.cinemaAddress.Contains("Rex")))
         {
