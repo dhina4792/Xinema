@@ -24,10 +24,12 @@ namespace XinemaActual.DAL
             var secondItem = new SelectListItem { Text = "Shaw", Value = "1" };
             var thirdItem = new SelectListItem { Text = "Golden Village", Value = "2" };
             var fourthItem = new SelectListItem { Text = "Cathay", Value = "3" };
+            var fifthItem = new SelectListItem { Text = "Rex", Value = "4" };
             CinemaOrderByDropDownItems.Add(firstItem);
             CinemaOrderByDropDownItems.Add(secondItem);
             CinemaOrderByDropDownItems.Add(thirdItem);
             CinemaOrderByDropDownItems.Add(fourthItem);
+            CinemaOrderByDropDownItems.Add(fifthItem);
 
 
         }
@@ -57,6 +59,11 @@ namespace XinemaActual.DAL
                 case 3:
                     cinemas = from t in SelectAllCinemas()
                               where t.cinemaName.Contains("Cathay") || t.cinemaAddress.Contains("Cathay")
+                              select t;
+                    return cinemas;
+                case 4:
+                    cinemas = from t in SelectAllCinemas()
+                              where t.cinemaName.Contains("Rex") || t.cinemaAddress.Contains("Rex")
                               select t;
                     return cinemas;
 

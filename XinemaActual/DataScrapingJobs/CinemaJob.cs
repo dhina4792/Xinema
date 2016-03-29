@@ -16,12 +16,14 @@ namespace XinemaActual.DataScrapingJobs
             System.Diagnostics.Debug.WriteLine("Executing cinema job...");
             CinemaGateway cinemaGateway = new CinemaGateway();
             ShowtimeGateway showtimeGateway = new ShowtimeGateway();
+            MovieGateway movieGateway = new MovieGateway();
             GoogleMoviesScraper gms = new GoogleMoviesScraper();
             gms.TargetURL = "https://www.google.com/movies?near=singapore&rl=1&stok=ABAPP2tdNR_5cLRa-6emW2UtecEL44SX2A%3A1456036737594";
             // Scrap new data
             gms.scrapCinemaInfo();
             List<Cinema> cinemaList = gms.getCinemas();
             List<ShowTime> showTimeList = gms.getShowtimes();
+            List<Movie> moviesList = gms.getMovies();
             System.Diagnostics.Debug.WriteLine("cinemaList.Count() " + cinemaList.Count());
             // Check if cinemaList is done
 
@@ -31,8 +33,10 @@ namespace XinemaActual.DataScrapingJobs
             System.Diagnostics.Debug.WriteLine("Deleted database");
             int cinemaIndex = cinemaList.Count() - 1;
             int showTimeIndex = showTimeList.Count() - 1;
+            int movieIndex = moviesList.Count() - 1;
             Cinema cinema = new Cinema();
             ShowTime showTime = new ShowTime();
+            Movie movie = new Movie();
             // insert new data
             while (cinemaIndex >= 0)
             {
@@ -54,6 +58,19 @@ namespace XinemaActual.DataScrapingJobs
                 showTime.showtimeCinemaName = showTimeList[showTimeIndex].showtimeCinemaName;
                 showtimeGateway.Insert(showTime);
                 showTimeIndex--;
+            }
+
+            while (movieIndex >= 0)
+            {
+                movie.movieTitle = moviesList[movieIndex].movieTitle;
+                movie.movieGenre = moviesList[movieIndex].movieGenre;
+                movie.movieRating = moviesList[movieIndex].movieRating;
+                movie.movieTrailerURL  = moviesList[movieIndex].movieTrailerURL;
+                movie.movieRunningTime = moviesList[movieIndex].movieRunningTime;
+                movie.movieLanguage = moviesList[movieIndex].movieLanguage;
+                movie.movieShowTimes = moviesList[movieIndex].movieShowTimes;
+                movieGateway.Insert(movie);
+                movieIndex--;
             }
 
 

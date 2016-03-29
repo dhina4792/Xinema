@@ -129,13 +129,14 @@ namespace XinemaActual.DataScrapingLogic
                     //movie details
                     currMov.movieTitle = movie.FindElement(By.CssSelector(".name")).Text;
                     string movieInfo = movie.FindElement(By.CssSelector(".info")).Text;
+                    currMov.movieShowTimes = movie.FindElement(By.CssSelector(".times")).Text;
                     //if movie is not parseable skip this movie loop
                     if (!IsValidMovieInfo(movieInfo))
                     {
                         break;
                     }
                     //Console.WriteLine("Movie scrapped : " + currMov.ToString());
-                    showtime.showtimeStartTime = currMov.moveShowTimes;
+                    showtime.showtimeStartTime = currMov.movieShowTimes.ToString();
                     showtime.showtimeDate = thisDay.ToString("d/MM/yyyy");
                     showtime.showtimeTitle = currMov.movieTitle;
                     showtime.showtimeCinemaName = currentCinemaName;
