@@ -9,6 +9,11 @@ namespace XinemaActual.DAL
 {
     public class MovieReviewGateway : DataGateway<MovieReview>
     {
+        public IEnumerable<MovieReview> SelectAllMoviesReviews()
+        {
+            IEnumerable<MovieReview> groupedMoviesReviews = data.GroupBy(t => t.movieReviewName).Select(t => t.FirstOrDefault());
+            return groupedMoviesReviews;
 
+        }
     }
 }

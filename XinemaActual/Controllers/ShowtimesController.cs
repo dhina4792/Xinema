@@ -102,7 +102,7 @@ namespace XinemaActual.Controllers
                     if (item.Text == movieName)
                     {
                         item.Selected = true;
-                        TempData["movieName"] = null;
+                        TempData["movieName"] = "";
                         return View(showTimeGateway.SelectShowtimeByMovieAndCurrentDate(Convert.ToInt32(item.Value)));
 
                     }

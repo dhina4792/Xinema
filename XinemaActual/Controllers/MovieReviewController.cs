@@ -39,7 +39,7 @@ namespace XinemaActual.Controllers
                     yValues: new[] { "51.3", "24.7", "10.9" });
             RTChart.Save("~/Content/RTChart.jpg", "jpeg");
 
-            return View(movieReviewGateway.SelectAll());
+            return View(movieReviewGateway.SelectAllMoviesReviews());
 
         }
         public ActionResult Details(int? id)

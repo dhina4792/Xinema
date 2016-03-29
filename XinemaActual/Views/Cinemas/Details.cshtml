@@ -46,11 +46,14 @@
         Initialize();
     });
 </script>
-<div class="pull-right">
-    @Html.ActionLink("Get Showtimes", "Index", "Showtimes")
-</div>
+
 <div class="container">
+
      <h2 class="head">@Model.cinemaName</h2>
      <p>@Model.cinemaAddress</p>
+    @Html.ActionLink("Get " + Model.cinemaName + " Showtimes", "Index", "Showtimes")
     <div id="map_canvas" style="width: 400px; height: 300px;"></div>
+
+
+
 </div>

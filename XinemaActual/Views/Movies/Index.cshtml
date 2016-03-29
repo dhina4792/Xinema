@@ -2,35 +2,46 @@
 
 @{
     ViewBag.Title = "Movies";
-   
+
 }
 <ul class="breadcrumb breadcrumb__t">Movies</ul>
 <div class="pull-right">
     @Html.Label("Order By")
     @Html.DropDownList("MovieOrderByDropDownItems", null, new { onchange = "document.location.href='/Movies/Index?id='+this.value;" })
 </div>
-<div class="clear"> 
+<div class="clear">
 </div>
 <div class="container">
     <div class="top-box">
 
         @foreach (var item in Model)
             {
+
             <div class="col_1_of_3 span_1_of_3">
-                    <div class="inner_content clearfix">
+                <div class="inner_content clearfix">
+                    @if (item.moviePoster == null || item.moviePoster == "N/A")
+                    {
                         <div class="product_image">
-                            <img src="" alt="" />
+                            <img src="~/images/altImg.jpg" alt="" />
                         </div>
-                        <div class="price">
-                            <div class="cart-left">
-                                @Html.ActionLink(item.movieTitle, "Details", new { id = item.movieID }, new { @class = "title" })
-                            </div>
-                            <div class="clear"></div>
-                        </div>
+                    }
+                    else
+                    {
+                           
+                    <div class="product_image">
+                        <img src="@item.moviePoster" alt="" />
                     </div>
+
+                    }
+                    <div class="price">
+                        <div class="cart-left">
+                            @Html.ActionLink(item.movieTitle, "Details", new { id = item.movieID }, new { @class = "title" })
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
 
             </div>
         }
     </div>
 </div>
-

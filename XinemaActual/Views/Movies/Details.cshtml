@@ -1,25 +1,81 @@
-﻿@model XinemaActual.Models.Movie
+﻿
+@model XinemaActual.Models.Movie
 
 @{
     ViewBag.Title = "Details";
 }
 
 <ul class="breadcrumb breadcrumb__t">Movie Details</ul>
-<div class="pull-right">
-    @Html.ActionLink("Get Showtimes", "Index", "Showtimes")
-</div>
+
 <div class="container">
     <div class="cont span_2_of_3">
-        <div class="desc1 span_3_of_2">
-            <h3 class="m_3">@Html.DisplayFor(model => model.movieTitle)</h3>
-            <p class="m_5">@Html.DisplayFor(model => model.movieLanguage)</p>
+        <div class="grid images_3_of_2">
 
-            <span class="m_link"><a href="@Html.DisplayFor(model => model.movieTrailerURL)">Youtube trailer</a> </span>
-            <p class="m_text2">@Html.DisplayFor(model => model.movieGenre)</p>
-            <p class="m_text2">@Html.DisplayFor(model => model.movieRating)</p>
-            <p class="m_text2">@Html.DisplayFor(model => model.movieRunningTime)</p>
+            @if (Model.moviePoster == null || Model.moviePoster == "N/A")
+            {
+                <img class="etalage_thumb_image" src="~/images/altImg.jpg" />
+            }
+            else
+            {
+
+                <img class="etalage_thumb_image" src="@Html.DisplayFor(model => model.moviePoster)" />
+
+            }
+
+
+
+
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="desc1 span_3_of_2">
+            @Html.ActionLink("Get " + Model.movieTitle + " Showtimes", "Index", "Showtimes")
+            <h3 class="m_3">Movie title:</h3>
+
+            <p class="m_text">@Html.DisplayFor(model => model.movieTitle)</p>
+            <h3 class="m_3">Movie Language:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieLanguage)</p>
+
+            <h3 class="m_3">Actors:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieActors)</p>
+            <h3 class="m_3">Director:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieDirector)</p>
+            <h3 class="m_3">Movie Plot:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.moviePlot)</p>
+
+            <h3 class="m_3">Movie Genre:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieGenre)</p>
+            <h3 class="m_3">Movie Rating:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieRating)</p>
+            <h3 class="m_3">Movie Run time:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieRunningTime)</p>
+
+            <h3 class="m_3">IMDB Rating:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieIMDBRating)</p>
+            <h3 class="m_3">Rotten tomato Rating:</h3>
+            <p class="m_text">@Html.DisplayFor(model => model.movieTomatoesRating)</p>
+            @if (Model.movieTrailerURL == null || Model.movieTrailerURL == "N/A")
+            {
+
+            }
+            else
+            {
+                <span class="m_link"><a href="@Html.DisplayFor(model => model.movieTrailerURL)">Youtube trailer</a> </span>
+            }
+            @if (Model.movieWebsiteURL == null || Model.movieWebsiteURL == "N/A")
+            {
+
+            }
+            else
+            {
+
+                <span class="m_link"><a href="@Html.DisplayFor(model => model.movieWebsiteURL)">Movie website</a> </span>
+
+            }
+
+
+
         </div>
         <div class="clear"></div>
     </div>
 </div>
-
