@@ -27,13 +27,15 @@ namespace XinemaActual.Controllers
         {
             string[] genres = { };
             double[] imdbs = { };
+            double[] avg = { };
 
             List<String> genre = new List<string>();
             List<Double> imdb = new List<Double>();
             List<Double> average = new List<Double>();
 
-
-            double total = 0;
+            double imdbTotal = 0;
+            double rottenTotal = 0;
+            double reviewAvg = 0;
 
             // Search through Genres to check for null or N/A and assign 0 if they are as said
             foreach (Movie s in moviesGateway.SelectAllGenres())
@@ -41,29 +43,38 @@ namespace XinemaActual.Controllers
                 // store all genres for x axis
                 genre.Add(s.movieGenre);
 
-                if ((s.movieIMDBRating != null) && (s.movieIMDBRating != "N/A"))
+                // store all average for y axis
+                if (s.movieIMDBRating == "N/A" || s.movieIMDBRating == null)
                 {
-                    imdb.Add(Convert.ToDouble(s.movieIMDBRating));
-                }else
-                {
-                    imdb.Add(0);
+                    imdbTotal += 0;
                 }
-            }
-
-            for (int x = 0; x < genre.Count; x++)
-            {
-                foreach (Movie m in moviesGateway.getIMDBRatings("Action/Crime"))
+                else
                 {
-                    Response.Write(m.movieIMDBRating + "\n");
-
+                    imdbTotal += double.Parse(s.movieIMDBRating);
                 }
+
+                if (s.movieTomatoesRating == "N/A" || s.movieTomatoesRating == null)
+                {
+                    rottenTotal += 0;
+                }
+                else
+                {
+                    rottenTotal += double.Parse(s.movieTomatoesRating);
+                }
+                reviewAvg = ((imdbTotal + rottenTotal) / 2);
+                //Response.Write(reviewAvg + "<br/>");
+
+                average.Add(reviewAvg);
+
+                //Reset count after calculating each
+                reviewAvg = 0;
+                imdbTotal = 0;
+                rottenTotal = 0;
             }
-                Response.Write(total);
 
             // converting list to array
             genres = genre.ToArray();
-            imdbs = imdb.ToArray();
-
+            avg = average.ToArray();
 
             string themeChart = @"<Chart>
                       <ChartAreas>
@@ -84,7 +95,7 @@ namespace XinemaActual.Controllers
                          name: "Genres",
                          //xValue: new[] { genres},
                          xValue: genres,
-                         yValues: imdbs);
+                         yValues: avg);
             barChart.Save("~/Content/genreChart.jpg", "jpeg");
 
             return View(movieReviewGateway.SelectAllMoviesReviews());

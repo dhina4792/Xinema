@@ -52,7 +52,7 @@ namespace XinemaActual.DAL
             return groupedGenres;
         }
 
-        public IEnumerable<Movie> getIMDBRatings(string genre)
+        public IEnumerable<Movie> getRatings(string genre)
         { 
             IEnumerable<Movie> asdf = data.Where(t=>t.movieGenre == " " + genre + " ");
             return asdf;
