@@ -22,20 +22,6 @@ namespace XinemaActual.Controllers
         }
         public ActionResult Index()
         {
-
-            //var IMDBChart = new Chart(width: 600, height: 400)
-            //    .AddTitle("Top Grossing IMDB Box Office")
-            //    .AddSeries("Default", chartType: "Pie",
-            //        xValue: new[] { "Zootopia", "10 Cloverfield Land", "Deadpool" },
-            //        yValues: new[] { "144", "24.7", "328.2" });
-            //IMDBChart.Save("~/Content/IMDBChart.jpg", "jpeg");
-
-            //var RTChart = new Chart(width: 600, height: 400)
-            //    .AddTitle("Top Grossing Rotten Tomatoes Box Office")
-            //    .AddSeries("Default", chartType: "Pie",
-            //        xValue: new[] { "Zootopia", "10 Cloverfield Land", "Deadpool" },
-            //        yValues: new[] { "51.3", "24.7", "10.9" });
-            //RTChart.Save("~/Content/RTChart.jpg", "jpeg");
             var barChart = new Chart(width: 600, height: 400)
                      .AddTitle("Average Genre Chart")
                      .AddSeries(
@@ -49,13 +35,40 @@ namespace XinemaActual.Controllers
         }
         public ActionResult Details(int? id)
         {
-            string imdb = movieReviewGateway.SelectById(id).movieReviewIMDB;
-            string rotten = movieReviewGateway.SelectById(id).movieReviewRottenTomato;
-
-            if ((imdb != null) || (rotten != null))
-            {
-                if (!(imdb.Contains("N/A")) || (!rotten.Contains("N/A")))
+            string imdb;
+            string rotten;
+            if (movieReviewGateway.SelectById(id).movieReviewIMDB != null) { 
+                if (movieReviewGateway.SelectById(id).movieReviewIMDB != "N/A") {
+                    imdb = movieReviewGateway.SelectById(id).movieReviewIMDB;
+                }
+                else
                 {
+                    imdb = null;
+                }
+            }else
+            {
+                imdb = null;
+
+            }
+            if (movieReviewGateway.SelectById(id).movieReviewRottenTomato != null)
+            {
+                if (movieReviewGateway.SelectById(id).movieReviewRottenTomato != "N/A")
+                {
+                    rotten = movieReviewGateway.SelectById(id).movieReviewRottenTomato;
+                }
+                else
+                {
+                    rotten = null;
+                }
+            }
+            else
+            {
+                rotten = null;
+
+            }
+
+            if ((imdb != null) && (rotten != null))
+            {
                     var barChart = new Chart(width: 600, height: 400)
                      .AddTitle("Movie Review Rating for " + movieReviewGateway.SelectById(id).movieReviewName)
                      .AddSeries(
@@ -65,7 +78,6 @@ namespace XinemaActual.Controllers
                         ((double.Parse(movieReviewGateway.SelectById(id).movieReviewIMDB) + double.Parse(movieReviewGateway.SelectById(id).movieReviewRottenTomato))/2).ToString() });
                     barChart.Save("~/Content/barChart.jpg", "jpeg");
                     ViewBag.message = "";
-                }
             }
             else
             {
