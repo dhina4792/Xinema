@@ -90,7 +90,7 @@ namespace XinemaActual.Controllers
                     </Chart>";
 
             var barChart = new Chart(width: 1200, height: 400, theme:themeChart)
-                     .AddTitle("Average Movie Review For Each Genres")
+                     .AddTitle("IMDB combined with Rotten Tomatoes Review for Each Genre")
                      .AddSeries(
                          name: "Genres",
                          //xValue: new[] { genres},
