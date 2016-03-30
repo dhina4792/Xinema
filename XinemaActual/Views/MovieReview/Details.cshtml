@@ -3,12 +3,14 @@
 <div class="container">
     <h1>@Model.movieReviewName</h1>
 
-    @if ((@Model.movieReviewIMDB==null) || (@Model.movieReviewIMDB.Equals("N/A"))  &&  
-(@Model.movieReviewRottenTomato==null ) || (@Model.movieReviewRottenTomato.Equals("N/A")))
- {
-    @ViewBag.message
+    @if ((@Model.movieReviewIMDB==null) || (@Model.movieReviewIMDB.Equals("N/A"))  ||  
+        (@Model.movieReviewRottenTomato==null ) || (@Model.movieReviewRottenTomato.Equals("N/A")))
+    {
+        @ViewBag.message
 
-    }else {
-    <p><img src="@Url.Action("barChart")" /> </p>
+    }
+    else
+    {
+        <p><img src="@Url.Action("barChart")" /> </p>
     }
 </div>

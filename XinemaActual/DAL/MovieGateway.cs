@@ -22,7 +22,6 @@ namespace XinemaActual.DAL
             MovieOrderByDropDownItems.Add(firstItem);
             MovieOrderByDropDownItems.Add(secondItem);
 
-
         }
 
         public List<SelectListItem> GetMovieOrderByNames()
@@ -38,17 +37,25 @@ namespace XinemaActual.DAL
 
                     return SelectAllMovies().OrderByDescending(t => t.movieTitle);
 
-
-
             }
             return SelectAllMovies().OrderBy(t => t.movieTitle);
         }
 
         public IEnumerable<Movie> SelectAllMovies()
         {
-            IEnumerable<Movie> groupedMovies= data.GroupBy(t => t.movieTitle).Select(t => t.FirstOrDefault());
+            IEnumerable<Movie> groupedMovies = data.GroupBy(t => t.movieTitle).Select(t => t.FirstOrDefault());
             return groupedMovies;
-                                                      
+        }
+        public IEnumerable<Movie> SelectAllGenres()
+        {
+            IEnumerable<Movie> groupedGenres = data.GroupBy(t => t.movieGenre).Select(t => t.FirstOrDefault());
+            return groupedGenres;
+        }
+
+        public IEnumerable<Movie> getIMDBRatings(string genre)
+        { 
+            IEnumerable<Movie> asdf = data.Where(t=>t.movieGenre == " " + genre + " ");
+            return asdf;
         }
     }
 }

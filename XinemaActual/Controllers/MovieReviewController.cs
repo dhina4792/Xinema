@@ -8,26 +8,83 @@ using XinemaActual.DAL;
 using System.Web.Mvc;
 using System.Web.Helpers;
 using System.Data;
+using XinemaActual.Models;
 
 namespace XinemaActual.Controllers
 {
     public class MovieReviewController : Controller
     {
         private MovieReviewGateway movieReviewGateway;
-
+        private MovieGateway moviesGateway;
         // GET: Showtimes
         public MovieReviewController()
         {
             movieReviewGateway = new MovieReviewGateway();
+            moviesGateway = new MovieGateway();
         }
+
         public ActionResult Index()
         {
-            var barChart = new Chart(width: 600, height: 400)
-                     .AddTitle("Average Genre Chart")
+            string[] genres = { };
+            double[] imdbs = { };
+
+            List<String> genre = new List<string>();
+            List<Double> imdb = new List<Double>();
+            List<Double> average = new List<Double>();
+
+
+            double total = 0;
+
+            // Search through Genres to check for null or N/A and assign 0 if they are as said
+            foreach (Movie s in moviesGateway.SelectAllGenres())
+            {
+                // store all genres for x axis
+                genre.Add(s.movieGenre);
+
+                if ((s.movieIMDBRating != null) && (s.movieIMDBRating != "N/A"))
+                {
+                    imdb.Add(Convert.ToDouble(s.movieIMDBRating));
+                }else
+                {
+                    imdb.Add(0);
+                }
+            }
+
+            for (int x = 0; x < genre.Count; x++)
+            {
+                foreach (Movie m in moviesGateway.getIMDBRatings("Action/Crime"))
+                {
+                    Response.Write(m.movieIMDBRating + "\n");
+
+                }
+            }
+                Response.Write(total);
+
+            // converting list to array
+            genres = genre.ToArray();
+            imdbs = imdb.ToArray();
+
+
+            string themeChart = @"<Chart>
+                      <ChartAreas>
+                        <ChartArea Name=""Default"" _Template_=""All"">
+                          <AxisY>
+                            <LabelStyle Font=""Verdana, 12px"" />
+                          </AxisY>
+                          <AxisX LineColor=""64, 64, 64, 64"" Interval=""1"">
+                            <LabelStyle Font=""Verdana, 12px"" />
+                          </AxisX>
+                        </ChartArea>
+                      </ChartAreas>
+                    </Chart>";
+
+            var barChart = new Chart(width: 1200, height: 400, theme:themeChart)
+                     .AddTitle("Average Movie Review For Each Genres")
                      .AddSeries(
-                         name: "Movie",
-                         xValue: new[] { "IMDB", "Rotten Tomatoes", "Overall" },
-                         yValues: new[] { 1,2,3 });
+                         name: "Genres",
+                         //xValue: new[] { genres},
+                         xValue: genres,
+                         yValues: imdbs);
             barChart.Save("~/Content/genreChart.jpg", "jpeg");
 
             return View(movieReviewGateway.SelectAllMoviesReviews());
@@ -35,10 +92,12 @@ namespace XinemaActual.Controllers
         }
         public ActionResult Details(int? id)
         {
+            // Checking if Review from IMDB or Rotten Tomatoes is null
             string imdb;
             string rotten;
+
             if (movieReviewGateway.SelectById(id).movieReviewIMDB != null) { 
-                if (movieReviewGateway.SelectById(id).movieReviewIMDB != "N/A") {
+                if (movieReviewGateway.SelectById(id).movieReviewIMDB.ToString() != "N/A") {
                     imdb = movieReviewGateway.SelectById(id).movieReviewIMDB;
                 }
                 else
@@ -50,9 +109,10 @@ namespace XinemaActual.Controllers
                 imdb = null;
 
             }
+
             if (movieReviewGateway.SelectById(id).movieReviewRottenTomato != null)
             {
-                if (movieReviewGateway.SelectById(id).movieReviewRottenTomato != "N/A")
+                if (movieReviewGateway.SelectById(id).movieReviewRottenTomato.ToString() != "N/A")
                 {
                     rotten = movieReviewGateway.SelectById(id).movieReviewRottenTomato;
                 }
@@ -77,7 +137,6 @@ namespace XinemaActual.Controllers
                          yValues: new[] { movieReviewGateway.SelectById(id).movieReviewIMDB, movieReviewGateway.SelectById(id).movieReviewRottenTomato,
                         ((double.Parse(movieReviewGateway.SelectById(id).movieReviewIMDB) + double.Parse(movieReviewGateway.SelectById(id).movieReviewRottenTomato))/2).ToString() });
                     barChart.Save("~/Content/barChart.jpg", "jpeg");
-                    ViewBag.message = "";
             }
             else
             {
