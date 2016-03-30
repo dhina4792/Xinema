@@ -40,8 +40,11 @@ namespace XinemaActual.Controllers
             // Search through Genres to check for null or N/A and assign 0 if they are as said
             foreach (Movie s in moviesGateway.SelectAllGenres())
             {
-                // store all genres for x axis
-                genre.Add(s.movieGenre);
+                if (((s.movieIMDBRating != null) && (s.movieIMDBRating != "N/A")) || ((s.movieTomatoesRating != null) && (s.movieTomatoesRating != "N/A")))
+                {
+                    // store all genres for x axis
+                    genre.Add(s.movieGenre);
+                }
 
                 // store all average for y axis
                 if (s.movieIMDBRating == "N/A" || s.movieIMDBRating == null)
@@ -64,8 +67,10 @@ namespace XinemaActual.Controllers
                 reviewAvg = ((imdbTotal + rottenTotal) / 2);
                 //Response.Write(reviewAvg + "<br/>");
 
-                average.Add(reviewAvg);
-
+                if (reviewAvg != 0)
+                {
+                    average.Add(reviewAvg);
+                }
                 //Reset count after calculating each
                 reviewAvg = 0;
                 imdbTotal = 0;
