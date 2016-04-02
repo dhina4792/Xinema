@@ -60,7 +60,8 @@ namespace XinemaActual.DataScrapingJobs
             {
                 showTime.showtimeStartTime = showTimeList[showTimeIndex].showtimeStartTime;
                 System.Diagnostics.Debug.WriteLine("ShowtimeStartTime: " + showTimeList[showTimeIndex].showtimeStartTime);
-                showTime.showtimeDate = showTimeList[showTimeIndex].showtimeDate;
+                DateTime myDate = DateTime.Parse(showTimeList[showTimeIndex].showtimeDate);
+                showTime.showtimeDate = myDate.ToString("MM/dd/yyyy");
                 showTime.showtimeTitle = showTimeList[showTimeIndex].showtimeTitle;
                 showTime.showtimeCinemaName = showTimeList[showTimeIndex].showtimeCinemaName;
                 showtimeGateway.Insert(showTime);

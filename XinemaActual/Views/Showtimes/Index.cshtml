@@ -24,18 +24,19 @@
         {
 
 
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
-                        <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
-                        <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
-                    </div>
+            <div class="col-md-4">
+                <div style="height: 200px;" class="thumbnail">
+                    <h3>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.showtimeTitle)</h4>
+
+                    <pre>@Html.DisplayFor(modelItem => item.showtimeStartTime)</pre>
+
                 </div>
             </div>
 
         }
     </div>
+
     <div class="clear"></div>
     <h2 class="head">Cathay</h2>
     <div class="top-box">
@@ -43,13 +44,13 @@
         {
 
 
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
-                        <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
-                        <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
-                    </div>
+            <div class="col-md-4">
+                <div style="height: 200px;" class="thumbnail">
+                    <h3>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.showtimeTitle)</h4>
+
+                    <pre>@Html.DisplayFor(modelItem => item.showtimeStartTime)</pre>
+
                 </div>
             </div>
 
@@ -59,42 +60,41 @@
     <h2 class="head">Shaw</h2>
     <div class="top-box">
         @foreach (var item in Model.Where(item => item.showtimeCinemaName.Contains("Shaw")))
-        {
+            {
 
 
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
-                        <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
-                        <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
-                    </div>
+            <div class="col-md-4">
+                <div style="height: 200px;" class="thumbnail">
+                    <h3>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h3>
+                    <h4>@Html.DisplayFor(modelItem => item.showtimeTitle)</h4>
+                    <pre>@Html.DisplayFor(modelItem => item.showtimeStartTime)</pre>
+
                 </div>
             </div>
 
         }
     </div>
-        <div class="clear"></div>
-        <h2 class="head">Rex Cinemas</h2>
+    <div class="clear"></div>
+    <h2 class="head">Rex Cinemas</h2>
+    <div class="top-box">
         <div class="top-box">
-            <div class="top-box">
-                @foreach (var item in Model.Where(item => item.showtimeCinemaName.Contains("Rex")))
+            @foreach (var item in Model.Where(item => item.showtimeCinemaName.Contains("Rex")))
             {
 
 
-                    <div class="col-sm-6 col-md-6">
-                        <div class="thumbnail">
-                            <div class="caption">
-                                <h3>@Html.DisplayFor(modelItem => item.showtimeTitle)</h3>
-                                <h4>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h4>
-                                <h5>@Html.DisplayFor(modelItem => item.showtimeStartTime)</h5>
-                            </div>
-                        </div>
+                <div class="col-md-4">
+                    <div style="height: 200px;" class="thumbnail">
+                        <h3>@Html.DisplayFor(modelItem => item.showtimeCinemaName)</h3>
+                        <h4>@Html.DisplayFor(modelItem => item.showtimeTitle)</h4>
+
+                        <pre>@Html.DisplayFor(modelItem => item.showtimeStartTime)</pre>
+
                     </div>
+                </div>
 
-                }
+            }
 
 
-            </div>
         </div>
     </div>
+</div>

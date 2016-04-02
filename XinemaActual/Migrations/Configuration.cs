@@ -10,6 +10,7 @@ namespace XinemaActual.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(XinemaActual.DAL.XinemaActualContext context)

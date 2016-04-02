@@ -6,14 +6,15 @@
 <ul class="breadcrumb breadcrumb__t">Movie Review</ul>
 
 <div class="container">
+    <h1 class="head">Movie Review based on genre</h1>
     <p class="top-box" align="center">
     <img src="@Url.Action("genreChart")" />
         
-
+        <h1 class="head">Individual Movie Reviews</h1>
         @foreach (var item in Model)
         {
             <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
+                <div class="thumbnail" style="height: 75px;">
 
                     <div class="caption">
                         @Html.ActionLink(item.movieReviewName, "Details", new { id = item.movieReviewID }, new { @class = "h3" })

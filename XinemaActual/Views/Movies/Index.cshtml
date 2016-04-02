@@ -17,30 +17,31 @@
         @foreach (var item in Model)
             {
 
-            <div class="col_1_of_3 span_1_of_3">
-                <div class="inner_content clearfix">
-                    @if (item.moviePoster == null || item.moviePoster == "N/A")
-                    {
-                        <div class="product_image">
-                            <img src="~/images/altImg.jpg" alt="" />
-                        </div>
-                    }
-                    else
-                    {
-                           
-                    <div class="product_image">
-                        <img src="@item.moviePoster" alt="" />
-                    </div>
+            <div class="col-xs-6 col-sm-3">
+                <div style="height: 425px;" class="thumbnail">
+                    <div class="inner_content clearfix">
+                        @if (item.moviePoster == null || item.moviePoster == "N/A")
+                {
+                            <div class="product_image">
+                                <img src="~/images/altImg.jpg" alt="" />
+                            </div>
+                        }
+                        else
+                        {
 
-                    }
-                    <div class="price">
-                        <div class="cart-left">
-                            @Html.ActionLink(item.movieTitle, "Details", new { id = item.movieID }, new { @class = "title" })
+                            <div class="product_image">
+                                <img src="@item.moviePoster" alt="" />
+                            </div>
+
+                        }
+                        <div class="price">
+                            <div class="cart-left">
+                                @Html.ActionLink(item.movieTitle, "Details", new { id = item.movieID }, new { @class = "title" })
+                            </div>
+                            <div class="clear"></div>
                         </div>
-                        <div class="clear"></div>
                     </div>
                 </div>
-
             </div>
         }
     </div>

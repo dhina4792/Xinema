@@ -1,13 +1,7 @@
 ﻿using Quartz;
 using Quartz.Impl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Web;
-using XinemaActual.DAL;
 using XinemaActual.DataScrapingJobs;
-using XinemaActual.Models;
+
 
 namespace XinemaActual.App_Start
 {

@@ -29,31 +29,27 @@
 
 }
 <div class="container">
-@foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
-{
-    if (item.Selected == true && item.Text == "All")
+    @foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
     {
+        if (item.Selected == true && item.Text == "All")
+        {
 
             <h2 class="head">Golden Village</h2>
 
 
 
-    }
+        }
 
-}
+    }
     <div class="top-box">
         @foreach (var item in Model.Where(item => item.cinemaName.Contains("Golden Village") || item.cinemaAddress.Contains("Golden Village")))
         {
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-
-                    <div class="caption">
-                        @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
-                        <p>@item.cinemaAddress</p>
-
-                    </div>
-                </div>
+                <div class="col-md-4">
+                    <div style="height: 100px;" class="thumbnail">
+                    @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
+                    <p>@item.cinemaAddress</p>
             </div>
+        </div>
         }
     </div>
     <div class="clear"></div>
@@ -72,42 +68,34 @@
     <div class="top-box">
         @foreach (var item in Model.Where(item => item.cinemaName.Contains("Shaw") || item.cinemaAddress.Contains("Golden Village")))
         {
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-
-                    <div class="caption">
-                        @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
-                        <p>@item.cinemaAddress</p>
-
-                    </div>
+            <div class="col-md-4">
+                <div style="height: 100px;" class="thumbnail">
+                    @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
+                    <p>@item.cinemaAddress</p>
                 </div>
             </div>
         }
     </div>
     <div class="clear"></div>
-@foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
-{
-    if (item.Selected == true && item.Text == "All")
+    @foreach (var item in ViewBag.CinemaOrderByDropDownListItems)
     {
+        if (item.Selected == true && item.Text == "All")
+        {
 
-        <h2 class="head">Cathay</h2>
+            <h2 class="head">Cathay</h2>
 
 
+
+        }
 
     }
-
-}
     <div class="top-box">
         @foreach (var item in Model.Where(item => item.cinemaName.Contains("Cathay") || item.cinemaAddress.Contains("Cathay")))
         {
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-
-                    <div class="caption">
-                        @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
-                        <p>@item.cinemaAddress</p>
-
-                    </div>
+            <div class="col-md-4">
+                <div style="height: 100px;" class="thumbnail">
+                    @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
+                    <p>@item.cinemaAddress</p>
                 </div>
             </div>
         }
@@ -127,14 +115,10 @@
     <div class="top-box">
         @foreach (var item in Model.Where(item => item.cinemaName.Contains("Rex") || item.cinemaAddress.Contains("Rex")))
         {
-            <div class="col-sm-6 col-md-6">
-                <div class="thumbnail">
-
-                    <div class="caption">
-                        @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
-                        <p>@item.cinemaAddress</p>
-
-                    </div>
+            <div class="col-md-4">
+                <div style="height: 100px;" class="thumbnail">
+                    @Html.ActionLink(item.cinemaName, "Details", new { id = item.cinemaID }, new { @class = "h3" })
+                    <p>@item.cinemaAddress</p>
                 </div>
             </div>
         }
