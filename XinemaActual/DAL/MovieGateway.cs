@@ -54,8 +54,8 @@ namespace XinemaActual.DAL
 
         public IEnumerable<Movie> getRatings(string genre)
         { 
-            IEnumerable<Movie> asdf = data.Where(t=>t.movieGenre == " " + genre + " ");
-            return asdf;
+            IEnumerable<Movie> movieRatings = data.Where(t=>t.movieGenre == " " + genre + " ");
+            return movieRatings;
         }
     }
 }
