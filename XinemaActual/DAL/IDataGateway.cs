@@ -14,6 +14,7 @@ namespace XinemaActual.DAL
         void Update(T obj);
         T Delete(int? id);
         void Save();
+        void DeleteRange(IEnumerable<T> entities);
 
     }
 }
