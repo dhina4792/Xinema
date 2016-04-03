@@ -39,12 +39,44 @@
             title: '@Model.cinemaName'
 
         });
+        var infowindow = new google.maps.InfoWindow({
+            content:"@Model.cinemaName"
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+        });
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                mapcl = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+                mapProp = {
+                    center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                    zoom: 20,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    minZoom: 11,
+                    maxZoom: 15
+                };
+
+                marker1 = new google.maps.Marker({
+                    position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
+                    map:map
+                });
+            })
+            var infowindowUser = new google.maps.InfoWindow({
+                content:"Your Location"
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindowUser.open(map,marker1);
+            });
+
+        }
+
     }
 
-
-    $(function () {
-        Initialize();
-    });
+        $(function () {
+            Initialize();
+        });
 </script>
 
 <div class="container">

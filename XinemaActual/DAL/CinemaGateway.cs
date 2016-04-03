@@ -84,6 +84,7 @@ namespace XinemaActual.DAL
         }
         public IEnumerable<Cinema> SelectAllCinemas()
         {
+
             IEnumerable<Cinema> groupedCinemas = data.GroupBy(t => t.cinemaName).Select(t => t.FirstOrDefault());
             return groupedCinemas;
 
