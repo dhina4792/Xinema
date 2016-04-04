@@ -261,7 +261,6 @@
     <Compile Include="DAL\ShowtimeGateway.cs" />
     <Compile Include="DAL\XinemaActualContext.cs" />
     <Compile Include="DataScrapingJobs\CinemaJob.cs" />
-    <Compile Include="DataScrapingJobs\IMDBReviewJob.cs" />
     <Compile Include="DataScrapingLogic\GoogleMoviesScraper.cs" />
     <Compile Include="DataScrapingLogic\IMDBReviewScraper.cs" />
     <Compile Include="Global.asax.cs">

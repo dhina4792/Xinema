@@ -1,10 +1,10 @@
-﻿@model XinemaActual.Models.MovieReview
+﻿@model XinemaActual.Models.Movie
 
 <div class="container">
-    <h1>@Model.movieReviewName</h1>
+    <h1>@Model.movieTitle</h1>
 
-    @if ((@Model.movieReviewIMDB==null) || (@Model.movieReviewIMDB.Equals("N/A"))  ||  
-        (@Model.movieReviewRottenTomato==null ) || (@Model.movieReviewRottenTomato.Equals("N/A")))
+    @if ((@Model.movieIMDBRating==null) || (@Model.movieIMDBRating.Equals("N/A"))  ||  
+        (@Model.movieTomatoesRating==null ) || (@Model.movieTomatoesRating.Equals("N/A")))
     {
         @ViewBag.message
 

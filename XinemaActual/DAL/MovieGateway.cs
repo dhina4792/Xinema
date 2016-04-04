@@ -10,11 +10,13 @@ namespace XinemaActual.DAL
     public class MovieGateway : DataGateway<Movie>
     {
         private List<SelectListItem> MovieOrderByDropDownItems;
+        private List<SelectListItem> MovieGenreByDropDownItems;
 
         public MovieGateway()
         {
 
             MovieOrderByDropDownItems = new List<SelectListItem>();
+            MovieGenreByDropDownItems = new List<SelectListItem>();
             var firstItem = new SelectListItem { Text = "A-Z", Value = "0" };
             var secondItem = new SelectListItem { Text = "Z-A", Value = "1" };
 
@@ -23,11 +25,33 @@ namespace XinemaActual.DAL
             MovieOrderByDropDownItems.Add(secondItem);
 
         }
+        public List<SelectListItem> GetMovieGenres()
+        {
+            MovieGenreByDropDownItems = new List<SelectListItem>();
+            var moviesGenres = data.GroupBy(t => t.movieGenre).ToArray();
+            int i = 0;
+            MovieGenreByDropDownItems.Add(new SelectListItem { Text = "All", Value = null, Selected = true });
 
+            foreach (var item in moviesGenres)
+            {
+
+                MovieGenreByDropDownItems.Add(new SelectListItem { Text = item.Key.ToString(), Value = i.ToString(), Selected = false });
+                i++;
+            }
+
+            return MovieGenreByDropDownItems;
+        }
         public List<SelectListItem> GetMovieOrderByNames()
         {
             return MovieOrderByDropDownItems;
         }
+
+        internal object SelectMovieByMovieByGenres(int gID)
+        {
+            string genreName = MovieGenreByDropDownItems.Where(item => item.Value == gID.ToString()).First().Text;
+            return data.Where(t => t.movieGenre == genreName);
+        }
+
         public IEnumerable<Movie> SortBy(int id)
         {
             switch (id)

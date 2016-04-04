@@ -35,7 +35,7 @@ namespace XinemaActual.App_Start
                 .RepeatForever())
             .Build();
 
-            scheduler.ScheduleJob(cinemaJob, trigger2);
+            //scheduler.ScheduleJob(cinemaJob, trigger2);
 
 
         }

@@ -1,9 +1,14 @@
-﻿@model IEnumerable<XinemaActual.Models.MovieReview>
+﻿@model IEnumerable<XinemaActual.Models.Movie>
+
 
 @{
     ViewBag.Title = "Movie Review";
 }
 <ul class="breadcrumb breadcrumb__t">Movie Review</ul>
+<div class="pull-right">
+    @Html.Label("Order By Genre:")
+    @Html.DropDownList("MovieGenreDropDownListItems", null, new { onchange = "document.location.href='/MovieReview/Index?gID='+this.value;" })
+</div>
 
 <div class="container">
     <h1 class="head">Movie Review based on genre</h1>
@@ -17,7 +22,8 @@
                 <div class="thumbnail" style="height: 75px;">
 
                     <div class="caption">
-                        @Html.ActionLink(item.movieReviewName, "Details", new { id = item.movieReviewID }, new { @class = "h3" })
+                        @Html.ActionLink(item.movieTitle, "Details", new { id = item.movieID }, new { @class = "h3" })
+                        <h6>@Html.DisplayFor(modelItem => item.movieGenre)</h6>
 
                     </div>
                 </div>

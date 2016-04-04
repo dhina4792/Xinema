@@ -21,24 +21,40 @@ namespace XinemaActual.Controllers
 
             movieGateway = new MovieGateway();
             ViewBag.MovieOrderByDropDownItems = movieGateway.GetMovieOrderByNames();
+            ViewBag.MovieGenreDropDownListItems = movieGateway.GetMovieGenres();
         }
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? aID, int? gID)
         {
             ////return View(vm);
-            if (id != null)
+            if (aID != null)
             {
                 foreach (var item in ViewBag.MovieOrderByDropDownItems)
                 {
-                    if (item.Value == id.ToString())
+                    if (item.Value == aID.ToString())
                     {
                         item.Selected = true;
 
 
                     }
                 }
-                return View(movieGateway.SortBy((int)id));
+                return View(movieGateway.SortBy((int)aID));
             }
-            return View(movieGateway.SelectAllMovies());
+            else if (gID != null)
+            {
+                foreach (var item in ViewBag.MovieGenreDropDownListItems)
+                {
+                    if (item.Value == gID.ToString())
+                    {
+                        item.Selected = true;
+                    }
+                }
+                return View(movieGateway.SelectMovieByMovieByGenres((int)gID));
+
+            }
+            else
+            {
+                return View(movieGateway.SelectAllMovies());
+            }
 
 
         }

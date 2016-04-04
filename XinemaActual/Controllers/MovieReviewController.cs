@@ -21,9 +21,11 @@ namespace XinemaActual.Controllers
         {
             movieReviewGateway = new MovieReviewGateway();
             moviesGateway = new MovieGateway();
+            ViewBag.MovieGenreDropDownListItems = moviesGateway.GetMovieGenres();
+
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? gID)
         {
             string[] genres = { };
             double[] imdbs = { };
@@ -103,7 +105,24 @@ namespace XinemaActual.Controllers
                          yValues: avg);
             barChart.Save("~/Content/genreChart.jpg", "jpeg");
 
-            return View(movieReviewGateway.SelectAllMoviesReviews());
+             if (gID != null)
+            {
+                foreach (var item in ViewBag.MovieGenreDropDownListItems)
+                {
+                    if (item.Value == gID.ToString())
+                    {
+                        item.Selected = true;
+                    }
+                }
+                return View(moviesGateway.SelectMovieByMovieByGenres((int)gID));
+
+            }
+            else
+            {
+                return View(moviesGateway.SelectAllMovies());
+            }
+
+
 
         }
         public ActionResult Details(int? id)
@@ -112,9 +131,9 @@ namespace XinemaActual.Controllers
             string imdb;
             string rotten;
 
-            if (movieReviewGateway.SelectById(id).movieReviewIMDB != null) { 
-                if (movieReviewGateway.SelectById(id).movieReviewIMDB.ToString() != "N/A") {
-                    imdb = movieReviewGateway.SelectById(id).movieReviewIMDB;
+            if (moviesGateway.SelectById(id).movieIMDBRating != null) { 
+                if (moviesGateway.SelectById(id).movieIMDBRating.ToString() != "N/A") {
+                    imdb = moviesGateway.SelectById(id).movieIMDBRating;
                 }
                 else
                 {
@@ -126,11 +145,11 @@ namespace XinemaActual.Controllers
 
             }
 
-            if (movieReviewGateway.SelectById(id).movieReviewRottenTomato != null)
+            if (moviesGateway.SelectById(id).movieTomatoesRating != null)
             {
-                if (movieReviewGateway.SelectById(id).movieReviewRottenTomato.ToString() != "N/A")
+                if (moviesGateway.SelectById(id).movieTomatoesRating.ToString() != "N/A")
                 {
-                    rotten = movieReviewGateway.SelectById(id).movieReviewRottenTomato;
+                    rotten = moviesGateway.SelectById(id).movieTomatoesRating;
                 }
                 else
                 {
@@ -146,12 +165,12 @@ namespace XinemaActual.Controllers
             if ((imdb != null) && (rotten != null))
             {
                     var barChart = new Chart(width: 600, height: 400)
-                     .AddTitle("Movie Review Rating for " + movieReviewGateway.SelectById(id).movieReviewName)
+                     .AddTitle("Movie Review Rating for " + moviesGateway.SelectById(id).movieTitle)
                      .AddSeries(
                          name: "Movie",
                          xValue: new[] { "IMDB", "Rotten Tomatoes", "Overall" },
-                         yValues: new[] { movieReviewGateway.SelectById(id).movieReviewIMDB, movieReviewGateway.SelectById(id).movieReviewRottenTomato,
-                        ((double.Parse(movieReviewGateway.SelectById(id).movieReviewIMDB) + double.Parse(movieReviewGateway.SelectById(id).movieReviewRottenTomato))/2).ToString() });
+                         yValues: new[] { moviesGateway.SelectById(id).movieIMDBRating, moviesGateway.SelectById(id).movieTomatoesRating,
+                        ((double.Parse(moviesGateway.SelectById(id).movieIMDBRating) + double.Parse(moviesGateway.SelectById(id).movieTomatoesRating))/2).ToString() });
                     barChart.Save("~/Content/barChart.jpg", "jpeg");
             }
             else
@@ -161,7 +180,7 @@ namespace XinemaActual.Controllers
                 ViewBag.message = "Ratings have not been given for this movie yet";
             }            // Return the contents of the Stream to the client
 
-            return View(movieReviewGateway.SelectById(id));
+            return View(moviesGateway.SelectById(id));
 
         }
         public ActionResult barChart()
@@ -171,6 +190,7 @@ namespace XinemaActual.Controllers
         }
         public ActionResult genreChart()
         {
+
             return base.File("~/Content/genreChart.jpg", "jpeg");
 
         }
