@@ -58,8 +58,19 @@ namespace XinemaActual.Controllers
             String addressWithoutPhone = address.Substring(0, indexOfHyphen - 1);
             var locationService = new GoogleLocationService();
             var point = locationService.GetLatLongFromAddress(addressWithoutPhone);
-            ViewBag.latCinema = point.Latitude;
-            ViewBag.longCinema = point.Longitude;
+            if(point == null)
+            {
+                double singaporeLat = 1.352083;
+                double singaporeLong = 103.819836;
+                ViewBag.latCinema = singaporeLat;
+                ViewBag.longCinema = singaporeLong;
+            }
+            else
+            {
+                ViewBag.latCinema = point.Latitude;
+                ViewBag.longCinema = point.Longitude;
+            }
+
             TempData["cinemaName"] = cinemaGateway.SelectById(id).cinemaName;
             return View(model);
         }
